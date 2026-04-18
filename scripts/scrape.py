@@ -204,13 +204,16 @@ def run():
         "dry_run": DRY_RUN
     })
 
-    # 8. Send Slack digest (if not dry run)
-    if not DRY_RUN:
+    # 8. Send Slack digest (only on Wednesdays or if forced)
+    send_slack = os.environ.get("SEND_SLACK", "0") == "1"
+    if not DRY_RUN and send_slack:
         try:
             from scripts.slack_digest import send_weekly_digest
             send_weekly_digest(existing + new_events, new_events)
         except Exception as e:
             print(f"[Scrape] Slack digest error: {e}")
+    elif not send_slack:
+        print("[Scrape] Not Wednesday — skipping Slack digest")
 
     print(f"\n[Scrape] Done. Added {len(new_events)} new events.")
     return new_events

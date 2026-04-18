@@ -129,7 +129,7 @@ def build_digest_message(all_events, new_events=None):
     blocks.append(f":bar_chart: *Summary:* {total_active} upcoming | {past_count} past | {len(urgent)} need immediate attention")
 
     # Link to calendar
-    blocks.append("\n:link: <https://kshoor.github.io/kp-events-calendar/|View Full Calendar>")
+    blocks.append("\n:link: <https://kshoor2024.github.io/kp-events-calendar/|View Full Calendar> | <https://kshoor2024.github.io/kp-events-calendar/#map|View Map>")
 
     return "\n".join(blocks)
 

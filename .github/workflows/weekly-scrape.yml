@@ -1,14 +1,18 @@
-name: Weekly Event Scrape
+name: Event Scrape & Digest
 
 on:
   schedule:
-    # Wednesday 10am PT (PDT = UTC-7, PST = UTC-8)
-    # Using UTC-7 (PDT): 10am PT = 17:00 UTC
-    - cron: '0 17 * * 3'
+    # Every 3 days at 8am PT (15:00 UTC)
+    # Mon, Thu, Sun rotation covers the week
+    - cron: '0 15 */3 * *'
   workflow_dispatch:
     inputs:
       dry_run:
         description: 'Dry run (no commit, no Slack)'
+        type: boolean
+        default: false
+      force_slack:
+        description: 'Force Slack digest even if not Wednesday'
         type: boolean
         default: false
 
@@ -28,10 +32,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Determine if Slack digest should send
+        id: check_day
+        run: |
+          DAY_OF_WEEK=$(date -u +%u)
+          # 3 = Wednesday
+          if [ "$DAY_OF_WEEK" = "3" ] || [ "${{ inputs.force_slack }}" = "true" ]; then
+            echo "send_slack=1" >> $GITHUB_OUTPUT
+          else
+            echo "send_slack=0" >> $GITHUB_OUTPUT
+          fi
+
       - name: Run scraper
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SEND_SLACK: ${{ steps.check_day.outputs.send_slack }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
         run: python scripts/scrape.py
 
@@ -42,7 +58,7 @@ jobs:
           git config user.email "actions@github.com"
           if [ -n "$(git status --porcelain data/)" ]; then
             git add data/
-            git commit -m "events: weekly scrape $(date -u +%Y-%m-%d)"
+            git commit -m "events: scrape $(date -u +%Y-%m-%d)"
             git push
           else
             echo "No changes to commit"
