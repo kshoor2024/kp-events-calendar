@@ -32,6 +32,7 @@
       <!-- View toggle -->
       <div class="view-toggle">
         <button class="view-btn active" data-view="calendar">Calendar</button>
+        <button class="view-btn" data-view="list">List</button>
         <button class="view-btn" data-view="map">Map</button>
         <button class="view-btn" data-view="split">Split</button>
       </div>
@@ -81,6 +82,22 @@
   <div class="main-content" id="mainContent">
     <div class="calendar-container" id="calendarContainer">
       <div id="calendar"></div>
+    </div>
+    <div class="list-container" id="listContainer" style="display:none;">
+      <table class="events-table" id="eventsTable">
+        <thead>
+          <tr>
+            <th class="th-sortable" data-sort="urgency">Status</th>
+            <th class="th-sortable" data-sort="name">Event</th>
+            <th class="th-sortable" data-sort="category">Type</th>
+            <th class="th-sortable" data-sort="date">Date</th>
+            <th class="th-sortable" data-sort="location">Location</th>
+            <th>Contact</th>
+            <th class="th-sortable" data-sort="outreach">Outreach</th>
+          </tr>
+        </thead>
+        <tbody id="eventsTableBody"></tbody>
+      </table>
     </div>
     <div class="map-container" id="mapContainer" style="display:none;">
       <div id="map"></div>

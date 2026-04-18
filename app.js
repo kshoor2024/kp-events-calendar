@@ -7,6 +7,7 @@ let map = null;
 let markers = [];
 let selectedEventId = null;
 let currentView = 'calendar';
+let listSort = { key: 'date', dir: 'asc' };
 
 // --- Urgency ---
 function getUrgency(startDate) {
@@ -91,6 +92,7 @@ function applyFilters() {
 
   refreshCalendar();
   refreshMap();
+  refreshList();
   updateStats();
 }
 
@@ -221,6 +223,101 @@ function refreshMap() {
   });
 }
 
+// --- List/Table View ---
+function refreshList() {
+  const tbody = document.getElementById('eventsTableBody');
+  if (!tbody) return;
+
+  // Sort filtered events
+  const sorted = [...filteredEvents].sort((a, b) => {
+    let va, vb;
+    switch (listSort.key) {
+      case 'name':
+        va = a.name.toLowerCase(); vb = b.name.toLowerCase();
+        break;
+      case 'category':
+        va = a.category; vb = b.category;
+        break;
+      case 'date':
+        va = a.start_date || '9999'; vb = b.start_date || '9999';
+        break;
+      case 'location':
+        va = (a.location?.city || '').toLowerCase();
+        vb = (b.location?.city || '').toLowerCase();
+        break;
+      case 'outreach':
+        va = a.outreach_status || 'not_started';
+        vb = b.outreach_status || 'not_started';
+        break;
+      case 'urgency':
+        va = getUrgency(a.start_date).days;
+        vb = getUrgency(b.start_date).days;
+        break;
+      default:
+        va = a.start_date || '9999'; vb = b.start_date || '9999';
+    }
+    if (va < vb) return listSort.dir === 'asc' ? -1 : 1;
+    if (va > vb) return listSort.dir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  const outreachLabels = {
+    not_started: 'Not Started',
+    contacted: 'Contacted',
+    confirmed: 'Confirmed',
+    declined: 'Declined'
+  };
+
+  tbody.innerHTML = sorted.map(ev => {
+    const urg = getUrgency(ev.start_date);
+    const dateRange = formatDateRange(ev.start_date, ev.end_date);
+    const loc = ev.location || {};
+    const locationStr = [loc.city, loc.state].filter(Boolean).join(', ') + (loc.country && loc.country !== 'US' ? ` ${loc.country}` : '');
+    const contact = ev.contact || {};
+    const outreach = ev.outreach_status || 'not_started';
+
+    let contactHtml = '';
+    if (contact.email) contactHtml = `<a href="mailto:${contact.email}">${contact.email}</a>`;
+    else if (contact.phone) contactHtml = `<a href="tel:${contact.phone}">${contact.phone}</a>`;
+    else if (contact.website) contactHtml = `<a href="${contact.website}" target="_blank">Website</a>`;
+
+    return `<tr data-event-id="${ev.id}" class="${selectedEventId === ev.id ? 'selected' : ''}">
+      <td>
+        <div class="table-urgency">
+          <span class="table-urgency-dot" style="background:${urg.color}"></span>
+          <span class="table-urgency-label">${urg.label}</span>
+        </div>
+      </td>
+      <td>
+        <div class="table-event-name">${ev.name}</div>
+        ${ev.description ? `<div class="table-event-desc">${ev.description}</div>` : ''}
+      </td>
+      <td><span class="table-category ${ev.category}">${getCategoryLabel(ev.category)}</span></td>
+      <td style="white-space:nowrap">${dateRange}</td>
+      <td class="table-location">${locationStr}</td>
+      <td class="table-contact">${contactHtml}</td>
+      <td><span class="table-outreach ${outreach}">${outreachLabels[outreach]}</span></td>
+    </tr>`;
+  }).join('');
+
+  // Row click handler
+  tbody.querySelectorAll('tr').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = row.dataset.eventId;
+      const ev = filteredEvents.find(e => e.id === id);
+      if (ev) openSidebar(ev);
+    });
+  });
+
+  // Update sort header indicators
+  document.querySelectorAll('.th-sortable').forEach(th => {
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.dataset.sort === listSort.key) {
+      th.classList.add(listSort.dir === 'asc' ? 'sort-asc' : 'sort-desc');
+    }
+  });
+}
+
 // --- Sidebar ---
 function openSidebar(ev) {
   selectedEventId = ev.id;
@@ -328,6 +425,7 @@ function setView(view) {
   currentView = view;
   const mainContent = document.getElementById('mainContent');
   const calContainer = document.getElementById('calendarContainer');
+  const listContainer = document.getElementById('listContainer');
   const mapContainer = document.getElementById('mapContainer');
 
   // Remove split class
@@ -337,11 +435,17 @@ function setView(view) {
     btn.classList.toggle('active', btn.dataset.view === view);
   });
 
+  // Hide all first
+  calContainer.style.display = 'none';
+  listContainer.style.display = 'none';
+  mapContainer.style.display = 'none';
+
   if (view === 'calendar') {
     calContainer.style.display = 'block';
-    mapContainer.style.display = 'none';
+  } else if (view === 'list') {
+    listContainer.style.display = 'block';
+    refreshList();
   } else if (view === 'map') {
-    calContainer.style.display = 'none';
     mapContainer.style.display = 'block';
     setTimeout(() => map?.invalidateSize(), 100);
   } else if (view === 'split') {
@@ -373,6 +477,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('searchInput').addEventListener('input', () => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(applyFilters, 200);
+  });
+
+  // Table sort headers
+  document.querySelectorAll('.th-sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      if (listSort.key === key) {
+        listSort.dir = listSort.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        listSort.key = key;
+        listSort.dir = 'asc';
+      }
+      refreshList();
+    });
   });
 
   // Sidebar close
