@@ -6,7 +6,7 @@ let calendar = null;
 let map = null;
 let markers = [];
 let selectedEventId = null;
-let currentView = 'calendar';
+let currentView = 'list';
 let listSort = { key: 'date', dir: 'asc' };
 
 // --- Urgency ---
@@ -49,10 +49,12 @@ async function loadEvents() {
     const resp = await fetch('data/events.json');
     const data = await resp.json();
     allEvents = data.events || [];
+    loadOutreachFromLocalStorage();
     document.getElementById('lastUpdated').textContent = `Updated: ${new Date(data.last_updated).toLocaleDateString()}`;
     applyFilters();
     initCalendar();
     initMap();
+    refreshList();
     updateStats();
   } catch (err) {
     console.error('Failed to load events:', err);
@@ -171,6 +173,31 @@ function refreshCalendar() {
 }
 
 // --- Map ---
+let heatmapLayer = null;
+let heatmapVisible = false;
+
+// Cannabis legality by state (as of 2026)
+// rec = recreational legal, med = medical only, none = illegal/CBD only
+const STATE_CANNABIS_STATUS = {
+  'Alabama':'med','Alaska':'rec','Arizona':'rec','Arkansas':'med','California':'rec',
+  'Colorado':'rec','Connecticut':'rec','Delaware':'rec','Florida':'med','Georgia':'none',
+  'Hawaii':'rec','Idaho':'none','Illinois':'rec','Indiana':'none','Iowa':'none',
+  'Kansas':'none','Kentucky':'med','Louisiana':'med','Maine':'rec','Maryland':'rec',
+  'Massachusetts':'rec','Michigan':'rec','Minnesota':'rec','Mississippi':'med',
+  'Missouri':'rec','Montana':'rec','Nebraska':'rec','Nevada':'rec','New Hampshire':'med',
+  'New Jersey':'rec','New Mexico':'rec','New York':'rec','North Carolina':'none',
+  'North Dakota':'med','Ohio':'rec','Oklahoma':'med','Oregon':'rec','Pennsylvania':'med',
+  'Rhode Island':'rec','South Carolina':'none','South Dakota':'med','Tennessee':'none',
+  'Texas':'none','Utah':'med','Vermont':'rec','Virginia':'rec','Washington':'rec',
+  'West Virginia':'med','Wisconsin':'none','Wyoming':'none','District of Columbia':'rec'
+};
+
+const LEGALITY_COLORS = {
+  'rec': 'rgba(34, 197, 94, 0.25)',    // green
+  'med': 'rgba(245, 158, 11, 0.2)',    // yellow
+  'none': 'rgba(239, 68, 68, 0.12)'    // red
+};
+
 function initMap() {
   map = L.map('map', {
     zoomControl: true,
@@ -182,7 +209,73 @@ function initMap() {
     maxZoom: 18
   }).addTo(map);
 
+  // Add heatmap toggle control
+  const HeatmapControl = L.Control.extend({
+    options: { position: 'topright' },
+    onAdd: function() {
+      const div = L.DomUtil.create('div', 'leaflet-bar heatmap-control');
+      div.innerHTML = `<a href="#" title="Toggle cannabis legality overlay" id="heatmapToggle">&#x1f33f;</a>`;
+      div.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleHeatmap();
+      });
+      return div;
+    }
+  });
+  new HeatmapControl().addTo(map);
+
+  // Load GeoJSON for states, then auto-enable if URL hash
+  loadStateGeoJSON().then(() => {
+    if (window.location.hash === '#heatmap') toggleHeatmap();
+  });
+
   refreshMap();
+}
+
+async function loadStateGeoJSON() {
+  try {
+    const resp = await fetch('data/us-states.geo.json');
+    if (!resp.ok) return;
+    const geojson = await resp.json();
+
+    heatmapLayer = L.geoJSON(geojson, {
+      style: (feature) => {
+        const name = feature.properties.NAME || feature.properties.name;
+        const status = STATE_CANNABIS_STATUS[name] || 'none';
+        return {
+          fillColor: LEGALITY_COLORS[status],
+          fillOpacity: 1,
+          color: status === 'rec' ? 'rgba(34,197,94,0.4)' : status === 'med' ? 'rgba(245,158,11,0.3)' : 'rgba(239,68,68,0.15)',
+          weight: 1
+        };
+      },
+      onEachFeature: (feature, layer) => {
+        const name = feature.properties.NAME || feature.properties.name;
+        const status = STATE_CANNABIS_STATUS[abbr] || 'none';
+        const statusLabel = status === 'rec' ? 'Recreational Legal' : status === 'med' ? 'Medical Only' : 'Not Legal';
+        layer.bindTooltip(`<strong>${name}</strong><br>${statusLabel}`, {
+          sticky: true,
+          className: 'state-tooltip'
+        });
+      }
+    });
+  } catch (e) {
+    console.log('State GeoJSON not loaded:', e.message);
+  }
+}
+
+function toggleHeatmap() {
+  if (!heatmapLayer) return;
+  heatmapVisible = !heatmapVisible;
+  if (heatmapVisible) {
+    heatmapLayer.addTo(map);
+    heatmapLayer.bringToBack();
+    document.getElementById('heatmapToggle')?.classList.add('active');
+  } else {
+    map.removeLayer(heatmapLayer);
+    document.getElementById('heatmapToggle')?.classList.remove('active');
+  }
 }
 
 function refreshMap() {
@@ -228,8 +321,15 @@ function refreshList() {
   const tbody = document.getElementById('eventsTableBody');
   if (!tbody) return;
 
-  // Sort filtered events
+  // Sort filtered events — past events always go to the bottom
   const sorted = [...filteredEvents].sort((a, b) => {
+    const aIsPast = getUrgency(a.start_date).level === 'past';
+    const bIsPast = getUrgency(b.start_date).level === 'past';
+
+    // Past events sink to bottom regardless of sort
+    if (aIsPast && !bIsPast) return 1;
+    if (!aIsPast && bIsPast) return -1;
+
     let va, vb;
     switch (listSort.key) {
       case 'name':
@@ -244,6 +344,9 @@ function refreshList() {
       case 'location':
         va = (a.location?.city || '').toLowerCase();
         vb = (b.location?.city || '').toLowerCase();
+        break;
+      case 'tier':
+        va = a.tier || 9; vb = b.tier || 9;
         break;
       case 'outreach':
         va = a.outreach_status || 'not_started';
@@ -293,12 +396,34 @@ function refreshList() {
         ${ev.description ? `<div class="table-event-desc">${ev.description}</div>` : ''}
       </td>
       <td><span class="table-category ${ev.category}">${getCategoryLabel(ev.category)}</span></td>
+      <td><span class="table-tier tier-${ev.tier || 1}">T${ev.tier || 1}</span></td>
       <td style="white-space:nowrap">${dateRange}</td>
       <td class="table-location">${locationStr}</td>
       <td class="table-contact">${contactHtml}</td>
-      <td><span class="table-outreach ${outreach}">${outreachLabels[outreach]}</span></td>
+      <td>
+        <select class="outreach-select ${outreach}" data-event-id="${ev.id}">
+          <option value="not_started" ${outreach === 'not_started' ? 'selected' : ''}>Not Started</option>
+          <option value="contacted" ${outreach === 'contacted' ? 'selected' : ''}>Contacted</option>
+          <option value="confirmed" ${outreach === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+          <option value="declined" ${outreach === 'declined' ? 'selected' : ''}>Declined</option>
+        </select>
+      </td>
     </tr>`;
   }).join('');
+
+  // Outreach dropdown handler
+  tbody.querySelectorAll('.outreach-select').forEach(select => {
+    select.addEventListener('change', (e) => {
+      e.stopPropagation();
+      const id = select.dataset.eventId;
+      const newStatus = select.value;
+      updateOutreachStatus(id, newStatus);
+      // Update select styling
+      select.className = `outreach-select ${newStatus}`;
+    });
+    // Prevent row click when interacting with dropdown
+    select.addEventListener('click', (e) => e.stopPropagation());
+  });
 
   // Row click handler
   tbody.querySelectorAll('tr').forEach(row => {
@@ -316,6 +441,44 @@ function refreshList() {
       th.classList.add(listSort.dir === 'asc' ? 'sort-asc' : 'sort-desc');
     }
   });
+}
+
+// --- Outreach Status Update ---
+function updateOutreachStatus(eventId, newStatus) {
+  // Update in allEvents
+  const ev = allEvents.find(e => e.id === eventId);
+  if (ev) {
+    ev.outreach_status = newStatus;
+    // Save to localStorage so changes persist across page loads
+    saveOutreachToLocalStorage();
+    // If sidebar is open for this event, refresh it
+    if (selectedEventId === eventId) {
+      openSidebar(ev);
+    }
+  }
+}
+
+function saveOutreachToLocalStorage() {
+  const outreachMap = {};
+  allEvents.forEach(ev => {
+    if (ev.outreach_status && ev.outreach_status !== 'not_started') {
+      outreachMap[ev.id] = ev.outreach_status;
+    }
+  });
+  localStorage.setItem('kp_outreach_status', JSON.stringify(outreachMap));
+}
+
+function loadOutreachFromLocalStorage() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('kp_outreach_status') || '{}');
+    allEvents.forEach(ev => {
+      if (saved[ev.id]) {
+        ev.outreach_status = saved[ev.id];
+      }
+    });
+  } catch (e) {
+    // ignore parse errors
+  }
 }
 
 // --- Sidebar ---
@@ -446,11 +609,6 @@ function setView(view) {
     listContainer.style.display = 'block';
     refreshList();
   } else if (view === 'map') {
-    mapContainer.style.display = 'block';
-    setTimeout(() => map?.invalidateSize(), 100);
-  } else if (view === 'split') {
-    mainContent.classList.add('split');
-    calContainer.style.display = 'block';
     mapContainer.style.display = 'block';
     setTimeout(() => map?.invalidateSize(), 100);
   }

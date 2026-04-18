@@ -31,10 +31,9 @@
     <div class="controls-left">
       <!-- View toggle -->
       <div class="view-toggle">
-        <button class="view-btn active" data-view="calendar">Calendar</button>
-        <button class="view-btn" data-view="list">List</button>
+        <button class="view-btn" data-view="calendar">Calendar</button>
+        <button class="view-btn active" data-view="list">List</button>
         <button class="view-btn" data-view="map">Map</button>
-        <button class="view-btn" data-view="split">Split</button>
       </div>
 
       <!-- Category filters -->
@@ -64,7 +63,7 @@
           <span class="filter-dot urgent"></span> &lt;14 days
         </label>
         <label class="filter-checkbox">
-          <input type="checkbox" id="filterPast" checked>
+          <input type="checkbox" id="filterPast">
           <span class="filter-dot past"></span> Past
         </label>
       </div>
@@ -80,16 +79,17 @@
 
   <!-- Main content -->
   <div class="main-content" id="mainContent">
-    <div class="calendar-container" id="calendarContainer">
+    <div class="calendar-container" id="calendarContainer" style="display:none;">
       <div id="calendar"></div>
     </div>
-    <div class="list-container" id="listContainer" style="display:none;">
+    <div class="list-container" id="listContainer">
       <table class="events-table" id="eventsTable">
         <thead>
           <tr>
             <th class="th-sortable" data-sort="urgency">Status</th>
             <th class="th-sortable" data-sort="name">Event</th>
             <th class="th-sortable" data-sort="category">Type</th>
+            <th class="th-sortable" data-sort="tier">Tier</th>
             <th class="th-sortable" data-sort="date">Date</th>
             <th class="th-sortable" data-sort="location">Location</th>
             <th>Contact</th>
