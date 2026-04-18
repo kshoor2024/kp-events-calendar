@@ -1,0 +1,551 @@
+{
+  "last_updated": "2026-04-17T10:00:00-07:00",
+  "events": [
+    {
+      "id": "tpe-2026",
+      "name": "Total Product Expo (TPE) 2026",
+      "category": "business",
+      "start_date": "2026-03-31",
+      "end_date": "2026-04-02",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "info@totalproductexpo.com",
+        "phone": "",
+        "website": "https://totalproductexpo.com/"
+      },
+      "description": "North America's largest B2B trade show for tobacco, vape, alternative products, and consumer goods industries.",
+      "source": "manual",
+      "source_url": "https://totalproductexpo.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "champs-atlantic-city-2026",
+      "name": "CHAMPS Trade Show Atlantic City",
+      "category": "business",
+      "start_date": "2026-03-17",
+      "end_date": "2026-03-19",
+      "location": {
+        "venue": "Atlantic City Convention Center",
+        "city": "Atlantic City",
+        "state": "NJ",
+        "country": "US",
+        "lat": 39.3643,
+        "lng": -74.4229
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
+      "description": "CHAMPS Trade Show - the counterculture industry's premier B2B event.",
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "champs-vegas-may-2026",
+      "name": "CHAMPS Trade Show Las Vegas (May)",
+      "category": "business",
+      "start_date": "2026-05-06",
+      "end_date": "2026-05-09",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/las-vegas-may-2026"
+      },
+      "description": "CHAMPS Trade Show Las Vegas - counterculture industry's premier B2B trade event.",
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/las-vegas-may-2026",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "champs-vegas-dec-2026",
+      "name": "CHAMPS Trade Show Las Vegas (Dec)",
+      "category": "business",
+      "start_date": "2026-12-10",
+      "end_date": "2026-12-13",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
+      "description": "CHAMPS Trade Show Las Vegas December edition.",
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "hall-of-flowers-ventura-2026",
+      "name": "Hall of Flowers Ventura",
+      "category": "business",
+      "start_date": "2026-03-18",
+      "end_date": "2026-03-19",
+      "location": {
+        "venue": "Ventura County Fairgrounds",
+        "city": "Ventura",
+        "state": "CA",
+        "country": "US",
+        "lat": 34.2746,
+        "lng": -119.2290
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hallofflowers.com/"
+      },
+      "description": "World's premier cannabis trade show. Day 1: B2B trade show. Day 2: public cannabis festival (21+).",
+      "source": "manual",
+      "source_url": "https://www.hallofflowers.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "hall-of-flowers-nyc-2026",
+      "name": "Hall of Flowers New York",
+      "category": "business",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-22",
+      "location": {
+        "venue": "Pier 36",
+        "city": "New York",
+        "state": "NY",
+        "country": "US",
+        "lat": 40.7098,
+        "lng": -73.9862
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hallofflowers.com/"
+      },
+      "description": "Hall of Flowers NYC. Day 1: B2B trade show for licensed brands & retail buyers. Day 2: public consumer festival (21+).",
+      "source": "manual",
+      "source_url": "https://www.hallofflowers.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "nacs-2026",
+      "name": "NACS Show 2026",
+      "category": "business",
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-09",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.convenience.org/"
+      },
+      "description": "National Association of Convenience Stores annual show. 1,200+ exhibitors, 420,000 sq ft. Key for tobacco/alternative retail.",
+      "source": "manual",
+      "source_url": "https://www.convenience.org/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "mjbizcon-2026",
+      "name": "MJBizCon 2026",
+      "category": "business",
+      "start_date": "2026-12-01",
+      "end_date": "2026-12-04",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://mjbizconference.com/"
+      },
+      "description": "World's leading B2B cannabis expo. 20,000+ industry professionals. Conference, networking, and massive expo floor.",
+      "source": "manual",
+      "source_url": "https://mjbizconference.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "reggae-rise-up-florida-2026",
+      "name": "Reggae Rise Up Florida",
+      "category": "end_user",
+      "start_date": "2026-03-12",
+      "end_date": "2026-03-15",
+      "location": {
+        "venue": "Vinoy Park",
+        "city": "St. Petersburg",
+        "state": "FL",
+        "country": "US",
+        "lat": 27.7746,
+        "lng": -82.6267
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/florida/"
+      },
+      "description": "Four-day waterfront reggae festival at Vinoy Park beside the St. Pete Pier. Major reggae acts, 21+ friendly culture.",
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/florida/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "reggae-rise-up-arizona-2026",
+      "name": "Reggae Rise Up Arizona",
+      "category": "end_user",
+      "start_date": "2026-04-17",
+      "end_date": "2026-04-19",
+      "location": {
+        "venue": "Tempe Beach Park",
+        "city": "Tempe",
+        "state": "AZ",
+        "country": "US",
+        "lat": 33.4309,
+        "lng": -111.9401
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/arizona/"
+      },
+      "description": "Three-day reggae festival at Tempe Beach Park. Major reggae lineup, cannabis-friendly culture.",
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/arizona/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "reggae-rise-up-oregon-2026",
+      "name": "Reggae Rise Up Oregon",
+      "category": "end_user",
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-14",
+      "location": {
+        "venue": "Deschutes County Fairgrounds",
+        "city": "Redmond",
+        "state": "OR",
+        "country": "US",
+        "lat": 44.2726,
+        "lng": -121.1739
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/oregon/"
+      },
+      "description": "Three-day camping reggae festival in Central Oregon. Second year running.",
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/oregon/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "california-roots-2026",
+      "name": "California Roots Music & Arts Festival",
+      "category": "end_user",
+      "start_date": "2026-05-22",
+      "end_date": "2026-05-24",
+      "location": {
+        "venue": "Monterey County Fairgrounds",
+        "city": "Monterey",
+        "state": "CA",
+        "country": "US",
+        "lat": 36.6002,
+        "lng": -121.8947
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.californiarootsfestival.com/"
+      },
+      "description": "Premier reggae festival. Ziggy Marley, Damian Marley, Rebelution, Ice Cube, Pepper. Memorial Day weekend. Cannabis-friendly culture.",
+      "source": "manual",
+      "source_url": "https://www.californiarootsfestival.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "reggae-on-the-river-2026",
+      "name": "Reggae on the River",
+      "category": "end_user",
+      "start_date": "2026-08-14",
+      "end_date": "2026-08-16",
+      "location": {
+        "venue": "Humboldt County Line Ranch",
+        "city": "Piercy",
+        "state": "CA",
+        "country": "US",
+        "lat": 39.9663,
+        "lng": -123.7944
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.reggaeontheriver.com/"
+      },
+      "description": "36th annual legendary reggae festival on the banks of the Eel River in Humboldt County. Deep cannabis culture roots.",
+      "source": "manual",
+      "source_url": "https://www.reggaeontheriver.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "mile-high-420-festival-2026",
+      "name": "Mile High 420 Festival",
+      "category": "end_user",
+      "start_date": "2026-04-20",
+      "end_date": "2026-04-20",
+      "location": {
+        "venue": "Civic Center Park",
+        "city": "Denver",
+        "state": "CO",
+        "country": "US",
+        "lat": 39.7392,
+        "lng": -104.9847
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
+      "description": "One of the world's largest 420 celebrations. 50,000+ attendees expected. Live music, cannabis culture.",
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "cannabis-cup-sacramento-2026",
+      "name": "Cannabis Cup Sacramento",
+      "category": "end_user",
+      "start_date": "2026-04-18",
+      "end_date": "2026-04-19",
+      "location": {
+        "venue": "",
+        "city": "Sacramento",
+        "state": "CA",
+        "country": "US",
+        "lat": 38.5816,
+        "lng": -121.4944
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cannabiscup.com/"
+      },
+      "description": "High Times Cannabis Cup moves to Sacramento for 420 weekend 2026. Premier cannabis competition and festival.",
+      "source": "manual",
+      "source_url": "https://cannabiscup.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "emerald-cup-2026",
+      "name": "The Emerald Cup",
+      "category": "end_user",
+      "start_date": "2026-08-15",
+      "end_date": "2026-08-16",
+      "location": {
+        "venue": "Sonoma County Fairgrounds",
+        "city": "Santa Rosa",
+        "state": "CA",
+        "country": "US",
+        "lat": 38.4468,
+        "lng": -122.7065
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
+      "description": "Premier cannabis competition and festival. 30,000+ attendees, live music, educational workshops, vendor exhibits.",
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "spannabis-2026",
+      "name": "Spannabis 2026",
+      "category": "business",
+      "start_date": "2026-04-17",
+      "end_date": "2026-04-19",
+      "location": {
+        "venue": "Bilbao Exposition Center (BEC)",
+        "city": "Bilbao",
+        "state": "",
+        "country": "ES",
+        "lat": 43.2630,
+        "lng": -2.9350
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
+      "description": "Europe's largest cannabis expo. Relocated from Barcelona to Bilbao. Exhibition, Champions Cup, and World Cannabis Conference.",
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": "Moved from Barcelona due to venue demolition"
+    },
+    {
+      "id": "icbc-berlin-2026",
+      "name": "ICBC Berlin 2026",
+      "category": "business",
+      "start_date": "2026-04-13",
+      "end_date": "2026-04-13",
+      "location": {
+        "venue": "",
+        "city": "Berlin",
+        "state": "",
+        "country": "DE",
+        "lat": 52.5200,
+        "lng": 13.4050
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://internationalcbc.com/icbc-2026-berlin/"
+      },
+      "description": "International Cannabis Business Conference - Europe's largest and longest-running cannabis B2B event.",
+      "source": "manual",
+      "source_url": "https://internationalcbc.com/icbc-2026-berlin/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "cb-expo-dortmund-2026",
+      "name": "CB Expo Dortmund",
+      "category": "business",
+      "start_date": "2026-09-15",
+      "end_date": "2026-09-17",
+      "location": {
+        "venue": "",
+        "city": "Dortmund",
+        "state": "",
+        "country": "DE",
+        "lat": 51.5136,
+        "lng": 7.4653
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cb-expo.com/en/"
+      },
+      "description": "Cannabis Business Expo in Dortmund, Germany. B2B trade show for the European cannabis industry.",
+      "source": "manual",
+      "source_url": "https://cb-expo.com/en/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "asia-hemp-expo-2026",
+      "name": "Asia International Hemp Expo",
+      "category": "business",
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-20",
+      "location": {
+        "venue": "Queen Sirikit National Convention Center",
+        "city": "Bangkok",
+        "state": "",
+        "country": "TH",
+        "lat": 13.7230,
+        "lng": 100.5607
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.asiahempexpo.com/"
+      },
+      "description": "International hemp expo covering agriculture, medicine, and sustainability. Key emerging Asian cannabis market event.",
+      "source": "manual",
+      "source_url": "https://www.asiahempexpo.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "hippie-hill-420-2026",
+      "name": "Hippie Hill 420 Celebration",
+      "category": "end_user",
+      "start_date": "2026-04-20",
+      "end_date": "2026-04-20",
+      "location": {
+        "venue": "Robin Williams Meadow, Golden Gate Park",
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "US",
+        "lat": 37.7694,
+        "lng": -122.4568
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
+      "description": "Legendary Hippie Hill 420 celebration. Free admission, regulated cannabis sales on-site, live entertainment. 20,000+ expected.",
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    }
+  ]
+}

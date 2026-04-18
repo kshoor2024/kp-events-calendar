@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KP Events Calendar</title>
+
+  <!-- FullCalendar -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" crossorigin="anonymous">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <h1>KP Events Calendar</h1>
+      <span class="header-subtitle">Internal Event Tracking & Outreach</span>
+    </div>
+    <div class="header-right">
+      <span class="last-updated" id="lastUpdated"></span>
+    </div>
+  </header>
+
+  <!-- Controls bar -->
+  <div class="controls">
+    <div class="controls-left">
+      <!-- View toggle -->
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="calendar">Calendar</button>
+        <button class="view-btn" data-view="map">Map</button>
+        <button class="view-btn" data-view="split">Split</button>
+      </div>
+
+      <!-- Category filters -->
+      <div class="filter-group">
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterEndUser" checked>
+          <span class="filter-dot end-user"></span> End User
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterBusiness" checked>
+          <span class="filter-dot business"></span> Business
+        </label>
+      </div>
+
+      <!-- Urgency filters -->
+      <div class="filter-group">
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterComfortable" checked>
+          <span class="filter-dot comfortable"></span> 45+ days
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterSoon" checked>
+          <span class="filter-dot soon"></span> 15-45 days
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterUrgent" checked>
+          <span class="filter-dot urgent"></span> &lt;14 days
+        </label>
+        <label class="filter-checkbox">
+          <input type="checkbox" id="filterPast" checked>
+          <span class="filter-dot past"></span> Past
+        </label>
+      </div>
+    </div>
+
+    <div class="controls-right">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search events...">
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar" id="statsBar"></div>
+
+  <!-- Main content -->
+  <div class="main-content" id="mainContent">
+    <div class="calendar-container" id="calendarContainer">
+      <div id="calendar"></div>
+    </div>
+    <div class="map-container" id="mapContainer" style="display:none;">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <!-- Event detail sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebarClose">&times;</button>
+    <div class="sidebar-content" id="sidebarContent"></div>
+  </div>
+
+  <!-- Overlay for sidebar on mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-section">
+      <strong>Category:</strong>
+      <span class="legend-item"><span class="legend-swatch end-user-bg"></span> End User</span>
+      <span class="legend-item"><span class="legend-swatch business-bg"></span> Business</span>
+    </div>
+    <div class="legend-section">
+      <strong>Urgency:</strong>
+      <span class="legend-item"><span class="legend-swatch" style="background:#22c55e"></span> 45+ days</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> 15-45 days</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#ef4444"></span> &lt;14 days</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#9ca3af"></span> Past</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>

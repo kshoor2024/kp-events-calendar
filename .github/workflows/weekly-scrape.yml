@@ -1,0 +1,49 @@
+name: Weekly Event Scrape
+
+on:
+  schedule:
+    # Wednesday 10am PT (PDT = UTC-7, PST = UTC-8)
+    # Using UTC-7 (PDT): 10am PT = 17:00 UTC
+    - cron: '0 17 * * 3'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no commit, no Slack)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: python scripts/scrape.py
+
+      - name: Commit updated events
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "kp-events-bot[bot]"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git add data/
+            git commit -m "events: weekly scrape $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes to commit"
+          fi
