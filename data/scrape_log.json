@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2026-04-19T15:42:24.385184+00:00",
+    "candidates_found": 5,
+    "new_candidates": 5,
+    "relevant_after_filter": 5,
+    "events_added": 4,
+    "new_event_names": [
+      "CHAMPS Trade Show",
+      "Hall of Flowers",
+      "MJBizCon",
+      "International Cannabis Business Conference"
+    ],
+    "dry_run": false
+  }
+]

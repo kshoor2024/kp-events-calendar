@@ -1,6 +1,32 @@
 {
-  "last_updated": "2026-04-17T17:00:00-07:00",
+  "last_updated": "2026-04-19T15:42:24.383714+00:00",
   "events": [
+    {
+      "id": "mjbizcon",
+      "name": "MJBizCon",
+      "category": "business",
+      "start_date": "2024-12-01",
+      "end_date": "2024-12-04",
+      "location": {
+        "venue": "",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": null,
+        "lng": null
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://mjbizconference.com/"
+      },
+      "description": "The premier B2B cannabis conference and expo where industry professionals connect, do business, and explore the future of cannabis.",
+      "source": "scrape_trade",
+      "source_url": "https://mjbizconference.com/",
+      "added_date": "2026-04-19",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
     {
       "id": "reggae-rise-up-florida-2026",
       "name": "Reggae Rise Up Florida",
@@ -8,10 +34,25 @@
       "tier": 2,
       "start_date": "2026-03-12",
       "end_date": "2026-03-15",
-      "location": {"venue": "Vinoy Park", "city": "St. Petersburg", "state": "FL", "country": "US", "lat": 27.7746, "lng": -82.6267},
-      "contact": {"email": "", "phone": "", "website": "https://reggaeriseup.com/florida/"},
+      "location": {
+        "venue": "Vinoy Park",
+        "city": "St. Petersburg",
+        "state": "FL",
+        "country": "US",
+        "lat": 27.7746,
+        "lng": -82.6267
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/florida/"
+      },
       "description": "Four-day waterfront reggae festival. Cypress Hill, Sublime, 311, Slightly Stoopid. 21+ culture.",
-      "source": "manual", "source_url": "https://reggaeriseup.com/florida/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/florida/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "champs-atlantic-city-2026",
@@ -20,10 +61,25 @@
       "tier": 2,
       "start_date": "2026-03-17",
       "end_date": "2026-03-19",
-      "location": {"venue": "Atlantic City Convention Center", "city": "Atlantic City", "state": "NJ", "country": "US", "lat": 39.3643, "lng": -74.4229},
-      "contact": {"email": "", "phone": "", "website": "https://champstradeshows.com/"},
+      "location": {
+        "venue": "Atlantic City Convention Center",
+        "city": "Atlantic City",
+        "state": "NJ",
+        "country": "US",
+        "lat": 39.3643,
+        "lng": -74.4229
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
       "description": "CHAMPS Trade Show - counterculture industry's premier B2B event.",
-      "source": "manual", "source_url": "https://champstradeshows.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "hall-of-flowers-ventura-2026",
@@ -32,10 +88,25 @@
       "tier": 1,
       "start_date": "2026-03-18",
       "end_date": "2026-03-19",
-      "location": {"venue": "Ventura County Fairgrounds", "city": "Ventura", "state": "CA", "country": "US", "lat": 34.2746, "lng": -119.2290},
-      "contact": {"email": "", "phone": "", "website": "https://www.hallofflowers.com/"},
+      "location": {
+        "venue": "Ventura County Fairgrounds",
+        "city": "Ventura",
+        "state": "CA",
+        "country": "US",
+        "lat": 34.2746,
+        "lng": -119.229
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hallofflowers.com/"
+      },
       "description": "World's premier cannabis trade show. Day 1: B2B. Day 2: public cannabis festival with consumption zones. 250+ brands.",
-      "source": "manual", "source_url": "https://www.hallofflowers.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.hallofflowers.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "tpe-2026",
@@ -44,10 +115,25 @@
       "tier": 1,
       "start_date": "2026-03-31",
       "end_date": "2026-04-02",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "info@totalproductexpo.com", "phone": "", "website": "https://totalproductexpo.com/"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "info@totalproductexpo.com",
+        "phone": "",
+        "website": "https://totalproductexpo.com/"
+      },
       "description": "North America's largest B2B trade show for tobacco, vape, alternative products.",
-      "source": "manual", "source_url": "https://totalproductexpo.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://totalproductexpo.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "hash-bash-2026",
@@ -56,10 +142,25 @@
       "tier": 1,
       "start_date": "2026-04-04",
       "end_date": "2026-04-05",
-      "location": {"venue": "University of Michigan Diag", "city": "Ann Arbor", "state": "MI", "country": "US", "lat": 42.2776, "lng": -83.7409},
-      "contact": {"email": "", "phone": "", "website": "https://www.hash-bash.com/"},
+      "location": {
+        "venue": "University of Michigan Diag",
+        "city": "Ann Arbor",
+        "state": "MI",
+        "country": "US",
+        "lat": 42.2776,
+        "lng": -83.7409
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hash-bash.com/"
+      },
       "description": "Longest-running cannabis rally in the US. 10-15K attendees. Includes Hash Bash Cup competition (Apr 3-5).",
-      "source": "manual", "source_url": "https://www.hash-bash.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.hash-bash.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "buds-a-palooza-2026",
@@ -68,10 +169,25 @@
       "tier": 1,
       "start_date": "2026-04-11",
       "end_date": "2026-04-11",
-      "location": {"venue": "Roosevelt Row / Bud's Glass Joint", "city": "Phoenix", "state": "AZ", "country": "US", "lat": 33.4555, "lng": -112.0667},
-      "contact": {"email": "", "phone": "", "website": "https://www.budsapalooza.com/"},
+      "location": {
+        "venue": "Roosevelt Row / Bud's Glass Joint",
+        "city": "Phoenix",
+        "state": "AZ",
+        "country": "US",
+        "lat": 33.4555,
+        "lng": -112.0667
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.budsapalooza.com/"
+      },
       "description": "Six city blocks of downtown Phoenix. Two stages, live glass blowing, murals, food vendors. 21+. Major pre-420 cannabis festival.",
-      "source": "manual", "source_url": "https://www.budsapalooza.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.budsapalooza.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "icbc-berlin-2026",
@@ -80,10 +196,25 @@
       "tier": 3,
       "start_date": "2026-04-13",
       "end_date": "2026-04-15",
-      "location": {"venue": "Estrel Berlin Hotel", "city": "Berlin", "state": "", "country": "DE", "lat": 52.5200, "lng": 13.4050},
-      "contact": {"email": "", "phone": "", "website": "https://internationalcbc.com/icbc-2026-berlin/"},
+      "location": {
+        "venue": "Estrel Berlin Hotel",
+        "city": "Berlin",
+        "state": "",
+        "country": "DE",
+        "lat": 52.52,
+        "lng": 13.405
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://internationalcbc.com/icbc-2026-berlin/"
+      },
       "description": "Europe's largest and longest-running cannabis B2B tradeshow.",
-      "source": "manual", "source_url": "https://internationalcbc.com/icbc-2026-berlin/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://internationalcbc.com/icbc-2026-berlin/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "reggae-rise-up-arizona-2026",
@@ -92,10 +223,25 @@
       "tier": 1,
       "start_date": "2026-04-17",
       "end_date": "2026-04-19",
-      "location": {"venue": "Tempe Beach Park", "city": "Tempe", "state": "AZ", "country": "US", "lat": 33.4309, "lng": -111.9401},
-      "contact": {"email": "", "phone": "", "website": "https://reggaeriseup.com/arizona/"},
+      "location": {
+        "venue": "Tempe Beach Park",
+        "city": "Tempe",
+        "state": "AZ",
+        "country": "US",
+        "lat": 33.4309,
+        "lng": -111.9401
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/arizona/"
+      },
       "description": "Three-day reggae festival at Tempe Beach Park. Cannabis-friendly culture.",
-      "source": "manual", "source_url": "https://reggaeriseup.com/arizona/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/arizona/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "spannabis-2026",
@@ -104,10 +250,25 @@
       "tier": 3,
       "start_date": "2026-04-17",
       "end_date": "2026-04-19",
-      "location": {"venue": "Bilbao Exposition Center (BEC)", "city": "Bilbao", "state": "", "country": "ES", "lat": 43.2630, "lng": -2.9350},
-      "contact": {"email": "", "phone": "", "website": "https://spannabis.es/bilbao/en/home/"},
+      "location": {
+        "venue": "Bilbao Exposition Center (BEC)",
+        "city": "Bilbao",
+        "state": "",
+        "country": "ES",
+        "lat": 43.263,
+        "lng": -2.935
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://spannabis.es/bilbao/en/home/"
+      },
       "description": "Europe's largest cannabis expo. 25K+ visitors. Champions Cup + World Cannabis Conference. Moved from Barcelona to Bilbao.",
-      "source": "manual", "source_url": "https://spannabis.es/bilbao/en/home/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://spannabis.es/bilbao/en/home/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "national-cannabis-festival-2026",
@@ -116,10 +277,25 @@
       "tier": 2,
       "start_date": "2026-04-18",
       "end_date": "2026-04-19",
-      "location": {"venue": "RFK Stadium Festival Grounds", "city": "Washington", "state": "DC", "country": "US", "lat": 38.8899, "lng": -76.9714},
-      "contact": {"email": "", "phone": "", "website": "https://nationalcannabisfestival.com/"},
+      "location": {
+        "venue": "RFK Stadium Festival Grounds",
+        "city": "Washington",
+        "state": "DC",
+        "country": "US",
+        "lat": 38.8899,
+        "lng": -76.9714
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://nationalcannabisfestival.com/"
+      },
       "description": "25,000+ attendees. Live music + cannabis advocacy. Major East Coast consumer event.",
-      "source": "manual", "source_url": "https://nationalcannabisfestival.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://nationalcannabisfestival.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cannabis-cup-sacramento-2026",
@@ -128,10 +304,25 @@
       "tier": 1,
       "start_date": "2026-04-18",
       "end_date": "2026-04-19",
-      "location": {"venue": "", "city": "Sacramento", "state": "CA", "country": "US", "lat": 38.5816, "lng": -121.4944},
-      "contact": {"email": "", "phone": "", "website": "https://cannabiscup.com/"},
+      "location": {
+        "venue": "",
+        "city": "Sacramento",
+        "state": "CA",
+        "country": "US",
+        "lat": 38.5816,
+        "lng": -121.4944
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cannabiscup.com/"
+      },
       "description": "High Times Cannabis Cup Sacramento. Premier cannabis competition and festival.",
-      "source": "manual", "source_url": "https://cannabiscup.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://cannabiscup.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "420-state-fair-nuwu-2026",
@@ -140,22 +331,52 @@
       "tier": 1,
       "start_date": "2026-04-18",
       "end_date": "2026-04-18",
-      "location": {"venue": "NuWu Cannabis Marketplace", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1775, "lng": -115.1392},
-      "contact": {"email": "", "phone": "", "website": "https://www.nuwumain.com/events/420-state-fair-2026"},
+      "location": {
+        "venue": "NuWu Cannabis Marketplace",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1775,
+        "lng": -115.1392
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.nuwumain.com/events/420-state-fair-2026"
+      },
       "description": "3rd annual 21+ outdoor takeover. DJs, carnival games, brand activations, open-air cannabis consumption. 2pm-12am.",
-      "source": "manual", "source_url": "https://www.nuwumain.com/events/420-state-fair-2026", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.nuwumain.com/events/420-state-fair-2026",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "wiz-khalifa-420-eve-2026",
-      "name": "420 Eve on The Rocks — Wiz Khalifa",
+      "name": "420 Eve on The Rocks \u2014 Wiz Khalifa",
       "category": "end_user",
       "tier": 1,
       "start_date": "2026-04-19",
       "end_date": "2026-04-19",
-      "location": {"venue": "Red Rocks Amphitheatre", "city": "Morrison", "state": "CO", "country": "US", "lat": 39.6654, "lng": -105.2057},
-      "contact": {"email": "", "phone": "", "website": "https://www.goodvibesattherocks.com/"},
+      "location": {
+        "venue": "Red Rocks Amphitheatre",
+        "city": "Morrison",
+        "state": "CO",
+        "country": "US",
+        "lat": 39.6654,
+        "lng": -105.2057
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.goodvibesattherocks.com/"
+      },
       "description": "Wiz Khalifa, 2 Chainz, Berner, The Underachievers. Annual hip-hop + cannabis culture event at Red Rocks.",
-      "source": "manual", "source_url": "https://www.goodvibesattherocks.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.goodvibesattherocks.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "mile-high-420-festival-2026",
@@ -164,10 +385,25 @@
       "tier": 1,
       "start_date": "2026-04-20",
       "end_date": "2026-04-20",
-      "location": {"venue": "Civic Center Park", "city": "Denver", "state": "CO", "country": "US", "lat": 39.7392, "lng": -104.9847},
-      "contact": {"email": "", "phone": "", "website": "https://www.milehigh420fest.com/"},
+      "location": {
+        "venue": "Civic Center Park",
+        "city": "Denver",
+        "state": "CO",
+        "country": "US",
+        "lat": 39.7392,
+        "lng": -104.9847
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.milehigh420fest.com/"
+      },
       "description": "50,000+ attendees. Juicy J, Paul Wall, Mike Jones. Two stages. World's largest 420 celebration. 21+.",
-      "source": "manual", "source_url": "https://www.milehigh420fest.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.milehigh420fest.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "hippie-hill-420-2026",
@@ -176,10 +412,25 @@
       "tier": 1,
       "start_date": "2026-04-20",
       "end_date": "2026-04-20",
-      "location": {"venue": "Robin Williams Meadow, Golden Gate Park", "city": "San Francisco", "state": "CA", "country": "US", "lat": 37.7694, "lng": -122.4568},
-      "contact": {"email": "", "phone": "", "website": ""},
+      "location": {
+        "venue": "Robin Williams Meadow, Golden Gate Park",
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "US",
+        "lat": 37.7694,
+        "lng": -122.4568
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
       "description": "Legendary Hippie Hill 420 celebration. Free admission, regulated cannabis sales, live entertainment. 20,000+ expected.",
-      "source": "manual", "source_url": "", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "necann-boston-2026",
@@ -188,10 +439,25 @@
       "tier": 2,
       "start_date": "2026-04-24",
       "end_date": "2026-04-25",
-      "location": {"venue": "Boston Convention Center", "city": "Boston", "state": "MA", "country": "US", "lat": 42.3467, "lng": -71.0442},
-      "contact": {"email": "", "phone": "", "website": "https://necann.com/"},
+      "location": {
+        "venue": "Boston Convention Center",
+        "city": "Boston",
+        "state": "MA",
+        "country": "US",
+        "lat": 42.3467,
+        "lng": -71.0442
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://necann.com/"
+      },
       "description": "9,000+ attendees, 300+ exhibitors. Includes NECANN Cup cannabis competition.",
-      "source": "manual", "source_url": "https://necann.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://necann.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "mendo-cup-2026",
@@ -200,10 +466,25 @@
       "tier": 1,
       "start_date": "2026-05-03",
       "end_date": "2026-05-03",
-      "location": {"venue": "Willits Grange", "city": "Willits", "state": "CA", "country": "US", "lat": 39.4096, "lng": -123.3558},
-      "contact": {"email": "", "phone": "", "website": "https://www.themendocup.org/"},
+      "location": {
+        "venue": "Willits Grange",
+        "city": "Willits",
+        "state": "CA",
+        "country": "US",
+        "lat": 39.4096,
+        "lng": -123.3558
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.themendocup.org/"
+      },
       "description": "Celebrates Mendocino County craft cannabis farmers. Outdoor consumption lounge, DJs, awards. 21+.",
-      "source": "manual", "source_url": "https://www.themendocup.org/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.themendocup.org/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "mj-unpacked-atlantic-city-2026",
@@ -212,10 +493,25 @@
       "tier": 2,
       "start_date": "2026-05-05",
       "end_date": "2026-05-07",
-      "location": {"venue": "Hard Rock Hotel", "city": "Atlantic City", "state": "NJ", "country": "US", "lat": 39.3771, "lng": -74.4387},
-      "contact": {"email": "", "phone": "", "website": "https://mjunpacked.com/"},
+      "location": {
+        "venue": "Hard Rock Hotel",
+        "city": "Atlantic City",
+        "state": "NJ",
+        "country": "US",
+        "lat": 39.3771,
+        "lng": -74.4387
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://mjunpacked.com/"
+      },
       "description": "B2B cannabis conference connecting brands with retail buyers.",
-      "source": "manual", "source_url": "https://mjunpacked.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://mjunpacked.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "champs-vegas-may-2026",
@@ -224,10 +520,51 @@
       "tier": 1,
       "start_date": "2026-05-06",
       "end_date": "2026-05-09",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "", "phone": "", "website": "https://champstradeshows.com/las-vegas-may-2026"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/las-vegas-may-2026"
+      },
       "description": "CHAMPS Trade Show. 700+ exhibitors: glass, vaporizers, rolling accessories, CBD. B2B buyers only.",
-      "source": "manual", "source_url": "https://champstradeshows.com/las-vegas-may-2026", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/las-vegas-may-2026",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "champs-trade-show",
+      "name": "CHAMPS Trade Show",
+      "category": "business",
+      "start_date": "2026-05-06",
+      "end_date": "2026-05-09",
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": null,
+        "lng": null
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
+      "description": "The premier counterculture B2B expo since 1999 featuring smoking accessories, counterculture products, and specialty gifts for retail and wholesale buyers.",
+      "source": "scrape_trade",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-19",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "california-roots-2026",
@@ -236,10 +573,25 @@
       "tier": 1,
       "start_date": "2026-05-22",
       "end_date": "2026-05-24",
-      "location": {"venue": "Monterey County Fairgrounds", "city": "Monterey", "state": "CA", "country": "US", "lat": 36.6002, "lng": -121.8947},
-      "contact": {"email": "", "phone": "", "website": "https://www.californiarootsfestival.com/"},
+      "location": {
+        "venue": "Monterey County Fairgrounds",
+        "city": "Monterey",
+        "state": "CA",
+        "country": "US",
+        "lat": 36.6002,
+        "lng": -121.8947
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.californiarootsfestival.com/"
+      },
       "description": "Premier reggae festival. Ziggy Marley, Damian Marley, Rebelution, Ice Cube, Pepper. Memorial Day weekend. Deep cannabis culture.",
-      "source": "manual", "source_url": "https://www.californiarootsfestival.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.californiarootsfestival.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cannabis-cup-socal-2026",
@@ -248,10 +600,25 @@
       "tier": 1,
       "start_date": "2026-05-25",
       "end_date": "2026-05-26",
-      "location": {"venue": "NOS Events Center", "city": "San Bernardino", "state": "CA", "country": "US", "lat": 34.0878, "lng": -117.2712},
-      "contact": {"email": "", "phone": "", "website": "https://cannabiscup.com/socal-2/"},
+      "location": {
+        "venue": "NOS Events Center",
+        "city": "San Bernardino",
+        "state": "CA",
+        "country": "US",
+        "lat": 34.0878,
+        "lng": -117.2712
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cannabiscup.com/socal-2/"
+      },
       "description": "High Times Cannabis Cup SoCal. Competition across flower, concentrates, edibles, pre-rolls. Consumer expo with live music.",
-      "source": "manual", "source_url": "https://cannabiscup.com/socal-2/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://cannabiscup.com/socal-2/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cannabis-cup-michigan-2026",
@@ -260,10 +627,25 @@
       "tier": 1,
       "start_date": "2026-05-26",
       "end_date": "2026-05-27",
-      "location": {"venue": "Michigan State Fairgrounds", "city": "Detroit", "state": "MI", "country": "US", "lat": 42.4395, "lng": -83.1039},
-      "contact": {"email": "", "phone": "", "website": "https://cannabiscup.com/michigan/"},
+      "location": {
+        "venue": "Michigan State Fairgrounds",
+        "city": "Detroit",
+        "state": "MI",
+        "country": "US",
+        "lat": 42.4395,
+        "lng": -83.1039
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cannabiscup.com/michigan/"
+      },
       "description": "High Times Cannabis Cup Michigan. Competition + consumer expo with hundreds of exhibitors, live music.",
-      "source": "manual", "source_url": "https://cannabiscup.com/michigan/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://cannabiscup.com/michigan/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cannabis-expo-south-africa-2026",
@@ -272,22 +654,52 @@
       "tier": 3,
       "start_date": "2026-05-29",
       "end_date": "2026-05-31",
-      "location": {"venue": "Sandton Convention Centre", "city": "Johannesburg", "state": "", "country": "ZA", "lat": -26.1076, "lng": 28.0567},
-      "contact": {"email": "", "phone": "", "website": "https://www.thecannabisexpo.co.za/"},
+      "location": {
+        "venue": "Sandton Convention Centre",
+        "city": "Johannesburg",
+        "state": "",
+        "country": "ZA",
+        "lat": -26.1076,
+        "lng": 28.0567
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.thecannabisexpo.co.za/"
+      },
       "description": "Africa's premier cannabis event. Includes co-located Vape Expo.",
-      "source": "manual", "source_url": "https://www.thecannabisexpo.co.za/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.thecannabisexpo.co.za/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "farmers-cup-420-2026",
-      "name": "Farmers Cup — 420 Edition",
+      "name": "Farmers Cup \u2014 420 Edition",
       "category": "end_user",
       "tier": 1,
       "start_date": "2026-05-30",
       "end_date": "2026-05-30",
-      "location": {"venue": "", "city": "San Diego", "state": "CA", "country": "US", "lat": 32.7157, "lng": -117.1611},
-      "contact": {"email": "", "phone": "", "website": "https://farmerscupofficial.com/"},
+      "location": {
+        "venue": "",
+        "city": "San Diego",
+        "state": "CA",
+        "country": "US",
+        "lat": 32.7157,
+        "lng": -117.1611
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://farmerscupofficial.com/"
+      },
       "description": "People's choice cannabis competition. Flower, edibles, concentrates, pre-rolls. Consumer judging. 21+.",
-      "source": "manual", "source_url": "https://farmerscupofficial.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://farmerscupofficial.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "lift-co-toronto-2026",
@@ -296,10 +708,25 @@
       "tier": 3,
       "start_date": "2026-06-01",
       "end_date": "2026-06-03",
-      "location": {"venue": "", "city": "Toronto", "state": "ON", "country": "CA", "lat": 43.6532, "lng": -79.3832},
-      "contact": {"email": "", "phone": "", "website": ""},
+      "location": {
+        "venue": "",
+        "city": "Toronto",
+        "state": "ON",
+        "country": "CA",
+        "lat": 43.6532,
+        "lng": -79.3832
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
       "description": "Canada's flagship cannabis B2B and consumer expo.",
-      "source": "manual", "source_url": "", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cali-vibes-2026",
@@ -308,10 +735,25 @@
       "tier": 1,
       "start_date": "2026-06-06",
       "end_date": "2026-06-07",
-      "location": {"venue": "Downtown Long Beach Waterfront", "city": "Long Beach", "state": "CA", "country": "US", "lat": 33.7527, "lng": -118.1935},
-      "contact": {"email": "", "phone": "", "website": "https://www.visitlongbeach.com/events/annual-events/cali-vibes-fest/"},
+      "location": {
+        "venue": "Downtown Long Beach Waterfront",
+        "city": "Long Beach",
+        "state": "CA",
+        "country": "US",
+        "lat": 33.7527,
+        "lng": -118.1935
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.visitlongbeach.com/events/annual-events/cali-vibes-fest/"
+      },
       "description": "One of the first festivals to permit on-site cannabis consumption. Cannabis village with brand activations. Reggae/hip-hop/alternative.",
-      "source": "manual", "source_url": "https://www.visitlongbeach.com/events/annual-events/cali-vibes-fest/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": "Dates unconfirmed — verify"
+      "source": "manual",
+      "source_url": "https://www.visitlongbeach.com/events/annual-events/cali-vibes-fest/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": "Dates unconfirmed \u2014 verify"
     },
     {
       "id": "mary-jane-berlin-2026",
@@ -320,10 +762,25 @@
       "tier": 3,
       "start_date": "2026-06-11",
       "end_date": "2026-06-14",
-      "location": {"venue": "Messe Berlin", "city": "Berlin", "state": "", "country": "DE", "lat": 52.5065, "lng": 13.2690},
-      "contact": {"email": "", "phone": "", "website": "https://www.maryjane-berlin.com/en"},
+      "location": {
+        "venue": "Messe Berlin",
+        "city": "Berlin",
+        "state": "",
+        "country": "DE",
+        "lat": 52.5065,
+        "lng": 13.269
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.maryjane-berlin.com/en"
+      },
       "description": "60,000+ visitors. Day 1 B2B only, Days 2-4 open to public (18+). Major European cannabis expo.",
-      "source": "manual", "source_url": "https://www.maryjane-berlin.com/en", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.maryjane-berlin.com/en",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "reggae-rise-up-oregon-2026",
@@ -332,10 +789,25 @@
       "tier": 1,
       "start_date": "2026-06-12",
       "end_date": "2026-06-14",
-      "location": {"venue": "Deschutes County Fairgrounds", "city": "Redmond", "state": "OR", "country": "US", "lat": 44.2726, "lng": -121.1739},
-      "contact": {"email": "", "phone": "", "website": "https://reggaeriseup.com/oregon/"},
+      "location": {
+        "venue": "Deschutes County Fairgrounds",
+        "city": "Redmond",
+        "state": "OR",
+        "country": "US",
+        "lat": 44.2726,
+        "lng": -121.1739
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://reggaeriseup.com/oregon/"
+      },
       "description": "Camping festival. Dirty Heads, Rebelution, 311, Iration, SOJA, Burning Spear, J Boog, Tribal Seeds.",
-      "source": "manual", "source_url": "https://reggaeriseup.com/oregon/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://reggaeriseup.com/oregon/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "champs-chicago-2026",
@@ -344,10 +816,25 @@
       "tier": 2,
       "start_date": "2026-06-23",
       "end_date": "2026-06-25",
-      "location": {"venue": "Donald E. Stephens Convention Center", "city": "Chicago", "state": "IL", "country": "US", "lat": 42.0034, "lng": -87.8623},
-      "contact": {"email": "", "phone": "", "website": "https://champstradeshows.com/chicago-2026"},
+      "location": {
+        "venue": "Donald E. Stephens Convention Center",
+        "city": "Chicago",
+        "state": "IL",
+        "country": "US",
+        "lat": 42.0034,
+        "lng": -87.8623
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/chicago-2026"
+      },
       "description": "CHAMPS Trade Show Chicago edition. Counterculture industry B2B.",
-      "source": "manual", "source_url": "https://champstradeshows.com/chicago-2026", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/chicago-2026",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "northern-nights-2026",
@@ -356,10 +843,25 @@
       "tier": 1,
       "start_date": "2026-07-17",
       "end_date": "2026-07-19",
-      "location": {"venue": "Cook's Valley Campground", "city": "Piercy", "state": "CA", "country": "US", "lat": 39.9663, "lng": -123.7944},
-      "contact": {"email": "", "phone": "", "website": "https://www.northernnights.org/"},
+      "location": {
+        "venue": "Cook's Valley Campground",
+        "city": "Piercy",
+        "state": "CA",
+        "country": "US",
+        "lat": 39.9663,
+        "lng": -123.7944
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.northernnights.org/"
+      },
       "description": "Cannabis lounge on-site. Cannabis brand partners (Cake, Papa's Herb, Neau Tropics). NorCal Eel River camping. Electronic/bass music.",
-      "source": "manual", "source_url": "https://www.northernnights.org/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.northernnights.org/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "reggae-on-the-mountain-2026",
@@ -368,10 +870,25 @@
       "tier": 1,
       "start_date": "2026-07-25",
       "end_date": "2026-07-25",
-      "location": {"venue": "Topanga Community Club", "city": "Topanga", "state": "CA", "country": "US", "lat": 34.0397, "lng": -118.6026},
-      "contact": {"email": "", "phone": "", "website": "https://www.reggaeonthemountain.com/"},
+      "location": {
+        "venue": "Topanga Community Club",
+        "city": "Topanga",
+        "state": "CA",
+        "country": "US",
+        "lat": 34.0397,
+        "lng": -118.6026
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.reggaeonthemountain.com/"
+      },
       "description": "SoCal roots reggae day festival. Don Carlos, Yellowman, Chalice. Counterculture canyon community.",
-      "source": "manual", "source_url": "https://www.reggaeonthemountain.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.reggaeonthemountain.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "reggae-on-the-river-2026",
@@ -380,10 +897,25 @@
       "tier": 1,
       "start_date": "2026-08-14",
       "end_date": "2026-08-16",
-      "location": {"venue": "Humboldt County Line Ranch", "city": "Piercy", "state": "CA", "country": "US", "lat": 39.9663, "lng": -123.7944},
-      "contact": {"email": "", "phone": "", "website": "https://www.reggaeontheriver.com/"},
+      "location": {
+        "venue": "Humboldt County Line Ranch",
+        "city": "Piercy",
+        "state": "CA",
+        "country": "US",
+        "lat": 39.9663,
+        "lng": -123.7944
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.reggaeontheriver.com/"
+      },
       "description": "36th annual. Legendary reggae festival on the Eel River in Humboldt County. Deep Emerald Triangle cannabis culture roots.",
-      "source": "manual", "source_url": "https://www.reggaeontheriver.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.reggaeontheriver.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "emerald-cup-2026",
@@ -392,10 +924,25 @@
       "tier": 1,
       "start_date": "2026-08-15",
       "end_date": "2026-08-16",
-      "location": {"venue": "Sonoma County Fairgrounds", "city": "Santa Rosa", "state": "CA", "country": "US", "lat": 38.4468, "lng": -122.7065},
-      "contact": {"email": "", "phone": "", "website": "https://theemeraldcup.com/"},
+      "location": {
+        "venue": "Sonoma County Fairgrounds",
+        "city": "Santa Rosa",
+        "state": "CA",
+        "country": "US",
+        "lat": 38.4468,
+        "lng": -122.7065
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://theemeraldcup.com/"
+      },
       "description": "World's most prestigious sun-grown cannabis competition. 30,000+ attendees. Live music, educational workshops, vendor exhibits.",
-      "source": "manual", "source_url": "https://theemeraldcup.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://theemeraldcup.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "seattle-hempfest-2026",
@@ -404,10 +951,25 @@
       "tier": 1,
       "start_date": "2026-08-18",
       "end_date": "2026-08-20",
-      "location": {"venue": "Myrtle Edwards Park", "city": "Seattle", "state": "WA", "country": "US", "lat": 47.6280, "lng": -122.3617},
-      "contact": {"email": "", "phone": "", "website": "https://www.hempfest.org/"},
+      "location": {
+        "venue": "Myrtle Edwards Park",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "US",
+        "lat": 47.628,
+        "lng": -122.3617
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hempfest.org/"
+      },
       "description": "America's longest-running cannabis legalization rally/festival. Free admission. Confirm status at hempfest.org.",
-      "source": "manual", "source_url": "https://www.hempfest.org/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": "Status uncertain recent years — verify"
+      "source": "manual",
+      "source_url": "https://www.hempfest.org/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": "Status uncertain recent years \u2014 verify"
     },
     {
       "id": "world-cannabis-asia-2026",
@@ -416,10 +978,25 @@
       "tier": 3,
       "start_date": "2026-08-25",
       "end_date": "2026-08-26",
-      "location": {"venue": "Centara Grand & Bangkok Convention Centre", "city": "Bangkok", "state": "", "country": "TH", "lat": 13.7230, "lng": 100.5607},
-      "contact": {"email": "", "phone": "", "website": ""},
+      "location": {
+        "venue": "Centara Grand & Bangkok Convention Centre",
+        "city": "Bangkok",
+        "state": "",
+        "country": "TH",
+        "lat": 13.723,
+        "lng": 100.5607
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
       "description": "Cannabis business conference for the Asia-Pacific region.",
-      "source": "manual", "source_url": "", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "champs-vegas-aug-2026",
@@ -428,10 +1005,25 @@
       "tier": 1,
       "start_date": "2026-08-26",
       "end_date": "2026-08-29",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "", "phone": "", "website": "https://champstradeshows.com/"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
       "description": "CHAMPS Trade Show Las Vegas summer edition. Smoke shop industry's largest B2B trade event.",
-      "source": "manual", "source_url": "https://champstradeshows.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cannacon-st-louis-2026",
@@ -440,10 +1032,25 @@
       "tier": 2,
       "start_date": "2026-08-28",
       "end_date": "2026-08-29",
-      "location": {"venue": "", "city": "St. Louis", "state": "MO", "country": "US", "lat": 38.6270, "lng": -90.1994},
-      "contact": {"email": "", "phone": "", "website": "https://cannacon.org/midwest/"},
+      "location": {
+        "venue": "",
+        "city": "St. Louis",
+        "state": "MO",
+        "country": "US",
+        "lat": 38.627,
+        "lng": -90.1994
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cannacon.org/midwest/"
+      },
       "description": "CannaCon Midwest cannabis business conference.",
-      "source": "manual", "source_url": "https://cannacon.org/midwest/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://cannacon.org/midwest/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "necann-nj-2026",
@@ -452,10 +1059,25 @@
       "tier": 2,
       "start_date": "2026-09-11",
       "end_date": "2026-09-12",
-      "location": {"venue": "Atlantic City Convention Center", "city": "Atlantic City", "state": "NJ", "country": "US", "lat": 39.3643, "lng": -74.4229},
-      "contact": {"email": "", "phone": "", "website": "https://necann.com/new-jersey-convention/"},
+      "location": {
+        "venue": "Atlantic City Convention Center",
+        "city": "Atlantic City",
+        "state": "NJ",
+        "country": "US",
+        "lat": 39.3643,
+        "lng": -74.4229
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://necann.com/new-jersey-convention/"
+      },
       "description": "NECANN New Jersey Cannabis Convention.",
-      "source": "manual", "source_url": "https://necann.com/new-jersey-convention/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://necann.com/new-jersey-convention/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "cb-expo-dortmund-2026",
@@ -464,10 +1086,25 @@
       "tier": 3,
       "start_date": "2026-09-15",
       "end_date": "2026-09-17",
-      "location": {"venue": "Dortmund Exhibition Center", "city": "Dortmund", "state": "", "country": "DE", "lat": 51.5136, "lng": 7.4653},
-      "contact": {"email": "", "phone": "", "website": "https://cb-expo.com/en/"},
+      "location": {
+        "venue": "Dortmund Exhibition Center",
+        "city": "Dortmund",
+        "state": "",
+        "country": "DE",
+        "lat": 51.5136,
+        "lng": 7.4653
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://cb-expo.com/en/"
+      },
       "description": "World's largest tobacco/smoke/vape trade fair. CB Expo cannabis co-located. 14,500 trade visitors.",
-      "source": "manual", "source_url": "https://cb-expo.com/en/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://cb-expo.com/en/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "nevada-camf-2026",
@@ -476,10 +1113,25 @@
       "tier": 1,
       "start_date": "2026-09-26",
       "end_date": "2026-09-26",
-      "location": {"venue": "Fremont Country Club", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1674, "lng": -115.1378},
-      "contact": {"email": "", "phone": "", "website": ""},
+      "location": {
+        "venue": "Fremont Country Club",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1674,
+        "lng": -115.1378
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
       "description": "Cannabis awards ceremony + live music. Recognizes top dispensaries, growers, influencers in Nevada.",
-      "source": "manual", "source_url": "", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "nacs-2026",
@@ -488,10 +1140,25 @@
       "tier": 1,
       "start_date": "2026-10-06",
       "end_date": "2026-10-09",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "", "phone": "", "website": "https://www.convenience.org/"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.convenience.org/"
+      },
       "description": "National Association of Convenience Stores. 1,200+ exhibitors, 420,000 sq ft. Key for tobacco/alternative retail.",
-      "source": "manual", "source_url": "https://www.convenience.org/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.convenience.org/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "mj-unpacked-kc-2026",
@@ -500,10 +1167,25 @@
       "tier": 2,
       "start_date": "2026-10-13",
       "end_date": "2026-10-15",
-      "location": {"venue": "", "city": "Kansas City", "state": "MO", "country": "US", "lat": 39.0997, "lng": -94.5786},
-      "contact": {"email": "", "phone": "", "website": "https://mjunpacked.com/"},
+      "location": {
+        "venue": "",
+        "city": "Kansas City",
+        "state": "MO",
+        "country": "US",
+        "lat": 39.0997,
+        "lng": -94.5786
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://mjunpacked.com/"
+      },
       "description": "MJ Unpacked cannabis B2B conference. Brands meet retail buyers.",
-      "source": "manual", "source_url": "https://mjunpacked.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://mjunpacked.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "hall-of-flowers-nyc-2026",
@@ -512,10 +1194,51 @@
       "tier": 2,
       "start_date": "2026-10-21",
       "end_date": "2026-10-22",
-      "location": {"venue": "Pier 36", "city": "New York", "state": "NY", "country": "US", "lat": 40.7098, "lng": -73.9862},
-      "contact": {"email": "", "phone": "", "website": "https://www.hallofflowers.com/"},
+      "location": {
+        "venue": "Pier 36",
+        "city": "New York",
+        "state": "NY",
+        "country": "US",
+        "lat": 40.7098,
+        "lng": -73.9862
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hallofflowers.com/"
+      },
       "description": "Hall of Flowers NYC. Day 1: B2B for licensed brands & retail buyers. Day 2: public consumer festival (21+).",
-      "source": "manual", "source_url": "https://www.hallofflowers.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.hallofflowers.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "hall-of-flowers",
+      "name": "Hall of Flowers",
+      "category": "business",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-22",
+      "location": {
+        "venue": "Pier 36",
+        "city": "New York City",
+        "state": "NY",
+        "country": "US",
+        "lat": null,
+        "lng": null
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.hallofflowers.com/"
+      },
+      "description": "Leading cannabis trade show connecting retailers, brands, and consumers with B2B networking on Day 1 and public festival atmosphere on Day 2.",
+      "source": "scrape_trade",
+      "source_url": "https://www.hallofflowers.com/",
+      "added_date": "2026-04-19",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "asia-hemp-expo-2026",
@@ -524,10 +1247,25 @@
       "tier": 3,
       "start_date": "2026-11-18",
       "end_date": "2026-11-20",
-      "location": {"venue": "Queen Sirikit National Convention Center", "city": "Bangkok", "state": "", "country": "TH", "lat": 13.7230, "lng": 100.5607},
-      "contact": {"email": "", "phone": "", "website": "https://www.asiahempexpo.com/"},
+      "location": {
+        "venue": "Queen Sirikit National Convention Center",
+        "city": "Bangkok",
+        "state": "",
+        "country": "TH",
+        "lat": 13.723,
+        "lng": 100.5607
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://www.asiahempexpo.com/"
+      },
       "description": "International hemp expo. Agriculture, medicine, sustainability. 10,000+ expected. Key emerging Asian market.",
-      "source": "manual", "source_url": "https://www.asiahempexpo.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://www.asiahempexpo.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "expocannabiz-colombia-2026",
@@ -536,10 +1274,25 @@
       "tier": 3,
       "start_date": "2026-11-20",
       "end_date": "2026-11-20",
-      "location": {"venue": "", "city": "Medellin", "state": "", "country": "CO", "lat": 6.2476, "lng": -75.5658},
-      "contact": {"email": "", "phone": "", "website": ""},
+      "location": {
+        "venue": "",
+        "city": "Medellin",
+        "state": "",
+        "country": "CO",
+        "lat": 6.2476,
+        "lng": -75.5658
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": ""
+      },
       "description": "8,000+ attendees, 150+ exhibitors. Latin America's gateway cannabis event.",
-      "source": "manual", "source_url": "", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "mjbizcon-2026",
@@ -548,10 +1301,25 @@
       "tier": 1,
       "start_date": "2026-12-01",
       "end_date": "2026-12-04",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "", "phone": "", "website": "https://mjbizconference.com/"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://mjbizconference.com/"
+      },
       "description": "World's largest cannabis trade show. 30,000+ industry professionals. 1,400+ exhibitors.",
-      "source": "manual", "source_url": "https://mjbizconference.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://mjbizconference.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
     },
     {
       "id": "champs-vegas-dec-2026",
@@ -560,10 +1328,51 @@
       "tier": 1,
       "start_date": "2026-12-10",
       "end_date": "2026-12-13",
-      "location": {"venue": "Las Vegas Convention Center", "city": "Las Vegas", "state": "NV", "country": "US", "lat": 36.1318, "lng": -115.1517},
-      "contact": {"email": "", "phone": "", "website": "https://champstradeshows.com/"},
+      "location": {
+        "venue": "Las Vegas Convention Center",
+        "city": "Las Vegas",
+        "state": "NV",
+        "country": "US",
+        "lat": 36.1318,
+        "lng": -115.1517
+      },
+      "contact": {
+        "email": "",
+        "phone": "",
+        "website": "https://champstradeshows.com/"
+      },
       "description": "CHAMPS Trade Show Las Vegas December edition.",
-      "source": "manual", "source_url": "https://champstradeshows.com/", "added_date": "2026-04-17", "outreach_status": "not_started", "notes": ""
+      "source": "manual",
+      "source_url": "https://champstradeshows.com/",
+      "added_date": "2026-04-17",
+      "outreach_status": "not_started",
+      "notes": ""
+    },
+    {
+      "id": "international-cannabis-business-conference",
+      "name": "International Cannabis Business Conference",
+      "category": "business",
+      "start_date": "2027-04-13",
+      "end_date": "2027-04-15",
+      "location": {
+        "venue": "",
+        "city": "Berlin",
+        "state": "",
+        "country": "DE",
+        "lat": null,
+        "lng": null
+      },
+      "contact": {
+        "email": "Info@mita.us",
+        "phone": "",
+        "website": "https://internationalcbc.com/"
+      },
+      "description": "Europe's biggest and longest running cannabis industry B2B tradeshow and conference bringing together top speakers and innovators.",
+      "source": "scrape_trade",
+      "source_url": "https://internationalcbc.com/",
+      "added_date": "2026-04-19",
+      "outreach_status": "not_started",
+      "notes": ""
     }
   ]
 }
