@@ -44,51 +44,25 @@ function formatDateRange(start, end) {
 }
 
 // --- CSV Parser ---
-function parseCSV(text) {
-  const lines = [];
-  let current = '';
-  let inQuotes = false;
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
+function loadCSV(text) {
+  const rows = [];
+  let current = '', fields = [], inQuotes = false;
+  for (let i = 0; i <= text.length; i++) {
+    const ch = i < text.length ? text[i] : '\n';
     if (ch === '"') {
       if (inQuotes && text[i + 1] === '"') { current += '"'; i++; }
       else inQuotes = !inQuotes;
     } else if (ch === ',' && !inQuotes) {
-      lines.push(current); current = '';
+      fields.push(current); current = '';
     } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
-      if (current || lines.length) { lines.push(current); }
-      if (lines.length) yield lines.slice();
-      lines.length = 0; current = '';
+      fields.push(current);
+      if (fields.length > 1) rows.push(fields.slice());
+      fields = []; current = '';
       if (ch === '\r' && text[i + 1] === '\n') i++;
     } else {
       current += ch;
     }
   }
-  if (current || lines.length) { lines.push(current); yield lines.slice(); }
-}
-
-function* csvGenerator(text) {
-  let current = '', fields = [], inQuotes = false;
-  for (let i = 0; i <= text.length; i++) {
-    const ch = text[i] || '';
-    if (ch === '"') {
-      if (inQuotes && text[i + 1] === '"') { current += '"'; i++; }
-      else inQuotes = !inQuotes;
-    } else if ((ch === ',' || ch === '' || ch === '\n' || ch === '\r') && !inQuotes) {
-      fields.push(current); current = '';
-      if (ch !== ',') {
-        if (fields.length > 1) yield fields.slice();
-        fields.length = 0;
-        if (ch === '\r' && text[i + 1] === '\n') i++;
-      }
-    } else {
-      current += ch;
-    }
-  }
-}
-
-function loadCSV(text) {
-  const rows = [...csvGenerator(text)];
   if (rows.length < 2) return [];
   const headers = rows[0];
   return rows.slice(1).map(cols => {
