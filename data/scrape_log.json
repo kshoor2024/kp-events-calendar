@@ -12,5 +12,13 @@
       "International Cannabis Business Conference"
     ],
     "dry_run": false
+  },
+  {
+    "timestamp": "2026-04-20T19:58:53.957885+00:00",
+    "candidates_found": 175,
+    "new_candidates": 175,
+    "events_added": 0,
+    "new_event_names": [],
+    "dry_run": false
   }
 ]
