@@ -244,6 +244,24 @@ def run():
     elif not SEND_SLACK:
         print("[Scrape v2] Slack digest skipped (not Wednesday or not forced)")
 
+    # --- Notify Kate ---
+    try:
+        from notify_kate import notify
+        summary = []
+        summary.append(f"{len(all_candidates)} candidates scanned across all sources")
+        summary.append(f"{len(new_rows)} new events added to the database")
+        if new_rows:
+            for r in new_rows[:5]:
+                summary.append(f"  + {r['Event Name']} ({r['Date(s)']}) [{r['Type']}]")
+            if len(new_rows) > 5:
+                summary.append(f"  ...and {len(new_rows) - 5} more")
+            summary.append("Outreach drafts are ready for review in the repo")
+        else:
+            summary.append("No new actionable events this sweep")
+        notify("Weekly Metro Sweep", summary)
+    except Exception as e:
+        print(f"[Scrape v2] Kate notification error: {e}")
+
     print(f"\n[Scrape v2] Done. Added {len(new_rows)} new events.")
     return new_rows
 

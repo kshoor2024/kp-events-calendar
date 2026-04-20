@@ -20,6 +20,8 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Run monthly cleanup
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
           python3 -c "
           import csv
@@ -69,6 +71,14 @@ jobs:
               print(f'Monthly cleanup: {changes} changes')
           else:
               print('Monthly cleanup: no changes needed')
+
+          # Notify Kate
+          sys.path.insert(0, 'scripts')
+          from notify_kate import notify
+          if changes > 0:
+              notify('Monthly Cleanup', [f'{changes} events updated — past events archived, stalled outreach flagged', 'Review any STALLED items and decide to retry or close'])
+          else:
+              notify('Monthly Cleanup', ['Database is clean — no past events or stalled outreach to flag'])
           "
 
       - name: Commit changes

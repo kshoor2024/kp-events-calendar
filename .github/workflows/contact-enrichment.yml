@@ -22,6 +22,7 @@ jobs:
       - name: Run contact enrichment
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
           python3 -c "
           import csv, os, sys
@@ -70,6 +71,13 @@ jobs:
               print(f'Updated {updated} contacts')
           else:
               print('No new contacts found')
+
+          # Notify Kate
+          from notify_kate import notify
+          if updated > 0:
+              notify('Contact Enrichment', [f'{updated} events now have contact info that were missing before', 'Check the database for updated emails/IG handles'])
+          else:
+              notify('Contact Enrichment', ['No new contacts found this run — will retry next Tuesday'])
           "
 
       - name: Commit changes
