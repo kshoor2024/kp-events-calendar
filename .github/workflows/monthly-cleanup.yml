@@ -1,0 +1,82 @@
+name: "Task 3: Monthly Cleanup"
+
+on:
+  schedule:
+    # 1st of every month at 8:00 AM PT (15:00 UTC)
+    - cron: '0 15 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+
+      - name: Run monthly cleanup
+        run: |
+          python3 -c "
+          import csv
+          from datetime import datetime
+          from pathlib import Path
+
+          csv_file = Path('data/events_database.csv')
+          rows = list(csv.DictReader(open(csv_file)))
+          today = datetime.now().strftime('%Y-%m-%d')
+          changes = 0
+
+          for row in rows:
+              date = row.get('Date(s)', '')
+              status = row.get('Status', '')
+
+              # Auto-archive past events
+              if date and date < today and 'ARCHIVED' not in status and 'Do Not' not in status:
+                  if date != 'TBD' and 'recurring' not in date.lower():
+                      try:
+                          datetime.strptime(date[:10], '%Y-%m-%d')
+                          row['Status'] = 'ARCHIVED - past event'
+                          changes += 1
+                          print(f'  Archived: {row[\"Event Name\"]} ({date})')
+                      except ValueError:
+                          pass
+
+              # Flag stalled outreach (contacted 30+ days ago, no response)
+              if status == 'Contacted':
+                  last_touch = row.get('Last Touch Date', '')
+                  if last_touch:
+                      try:
+                          touch_date = datetime.strptime(last_touch[:10], '%Y-%m-%d')
+                          days = (datetime.now() - touch_date).days
+                          if days > 30:
+                              row['Status'] = 'STALLED - no response 30d'
+                              changes += 1
+                              print(f'  Stalled: {row[\"Event Name\"]} (last touch {last_touch})')
+                      except ValueError:
+                          pass
+
+          if changes > 0:
+              headers = list(rows[0].keys())
+              with open(csv_file, 'w', newline='') as f:
+                  writer = csv.DictWriter(f, fieldnames=headers)
+                  writer.writeheader()
+                  writer.writerows(rows)
+              print(f'Monthly cleanup: {changes} changes')
+          else:
+              print('Monthly cleanup: no changes needed')
+          "
+
+      - name: Commit changes
+        run: |
+          git config user.name "kp-events-bot[bot]"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git add data/
+            git commit -m "events: monthly cleanup $(date -u +%Y-%m-%d)"
+            git push
+          fi

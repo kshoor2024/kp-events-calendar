@@ -1,0 +1,47 @@
+name: "Task 4: Pre-420/710 Surge Sweep"
+
+on:
+  schedule:
+    # March 20 (pre-420) and June 10 (pre-710) at 9:00 AM PT (16:00 UTC)
+    - cron: '0 16 20 3 *'
+    - cron: '0 16 10 6 *'
+    # Q4 next-year hunt: Oct 15, Nov 15
+    - cron: '0 16 15 10 *'
+    - cron: '0 16 15 11 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  surge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+
+      - name: Run surge sweep (all tiers including Tier 3)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SEND_SLACK: "1"
+          DRY_RUN: "0"
+        run: python scripts/scrape.py
+
+      - name: Generate outreach drafts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/outreach.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "kp-events-bot[bot]"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git add data/
+            git commit -m "events: surge sweep $(date -u +%Y-%m-%d)"
+            git push
+          fi

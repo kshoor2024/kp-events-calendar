@@ -43,14 +43,137 @@ function formatDateRange(start, end) {
   return `${formatDate(start)} - ${formatDate(end)}`;
 }
 
+// --- CSV Parser ---
+function parseCSV(text) {
+  const lines = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (inQuotes && text[i + 1] === '"') { current += '"'; i++; }
+      else inQuotes = !inQuotes;
+    } else if (ch === ',' && !inQuotes) {
+      lines.push(current); current = '';
+    } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+      if (current || lines.length) { lines.push(current); }
+      if (lines.length) yield lines.slice();
+      lines.length = 0; current = '';
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+    } else {
+      current += ch;
+    }
+  }
+  if (current || lines.length) { lines.push(current); yield lines.slice(); }
+}
+
+function* csvGenerator(text) {
+  let current = '', fields = [], inQuotes = false;
+  for (let i = 0; i <= text.length; i++) {
+    const ch = text[i] || '';
+    if (ch === '"') {
+      if (inQuotes && text[i + 1] === '"') { current += '"'; i++; }
+      else inQuotes = !inQuotes;
+    } else if ((ch === ',' || ch === '' || ch === '\n' || ch === '\r') && !inQuotes) {
+      fields.push(current); current = '';
+      if (ch !== ',') {
+        if (fields.length > 1) yield fields.slice();
+        fields.length = 0;
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+      }
+    } else {
+      current += ch;
+    }
+  }
+}
+
+function loadCSV(text) {
+  const rows = [...csvGenerator(text)];
+  if (rows.length < 2) return [];
+  const headers = rows[0];
+  return rows.slice(1).map(cols => {
+    const obj = {};
+    headers.forEach((h, i) => obj[h.trim()] = (cols[i] || '').trim());
+    return obj;
+  });
+}
+
+function csvRowToEvent(row) {
+  const name = row['Event Name'] || '';
+  const id = name.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim().replace(/ +/g, '-').slice(0, 60);
+  const type = (row['Type'] || '').toLowerCase().includes('business') ? 'business' : 'end_user';
+  const status = row['Status'] || 'Not contacted';
+  const priority = row['Priority'] || 'B';
+  const tags = (row['Tags'] || '').split(';').filter(Boolean);
+
+  // Map status to outreach_status
+  let outreach = 'not_started';
+  if (status.toLowerCase().includes('contacted')) outreach = 'contacted';
+  if (status.toLowerCase().includes('accepted') || status.toLowerCase().includes('confirmed')) outreach = 'confirmed';
+  if (status.toLowerCase().includes('declined') || status.toLowerCase().includes('do not')) outreach = 'declined';
+  if (status.toLowerCase().includes('archived')) outreach = 'declined';
+
+  return {
+    id,
+    name,
+    category: type,
+    tier: priority === 'A' ? 1 : priority === 'B' ? 2 : 3,
+    start_date: row['Date(s)'] || '',
+    end_date: row['End Date'] || row['Date(s)'] || '',
+    location: {
+      venue: '',
+      city: row['City'] || '',
+      state: row['State'] || '',
+      country: row['Country'] || 'US',
+      lat: null,
+      lng: null,
+    },
+    contact: {
+      email: (row['Contact Email or IG'] || '').includes('@') && !(row['Contact Email or IG'] || '').startsWith('@') ? row['Contact Email or IG'] : '',
+      phone: '',
+      website: row['Source URL'] || '',
+    },
+    description: row['Notes'] || '',
+    source: 'csv',
+    source_url: row['Source URL'] || '',
+    added_date: row['Date Added'] || '',
+    outreach_status: outreach,
+    status_raw: status,
+    priority,
+    tags,
+    notes: row['Notes'] || '',
+    consumption: row['Consumption On-Site'] || '',
+    accepts_product: row['Accepts Free Product'] || '',
+    event_size: row['Event Size'] || '',
+  };
+}
+
 // --- Load Data ---
 async function loadEvents() {
   try {
-    const resp = await fetch('data/events.json');
-    const data = await resp.json();
-    allEvents = data.events || [];
+    // Try CSV first, fall back to JSON
+    let loaded = false;
+    try {
+      const csvResp = await fetch('data/events_database.csv');
+      if (csvResp.ok) {
+        const text = await csvResp.text();
+        const rows = loadCSV(text);
+        allEvents = rows.map(csvRowToEvent).filter(e => e.name);
+        loaded = true;
+      }
+    } catch (e) { /* fall back to JSON */ }
+
+    if (!loaded) {
+      const resp = await fetch('data/events.json');
+      const data = await resp.json();
+      allEvents = data.events || [];
+    }
+
+    // Geocode events without lat/lng (use a simple lookup)
+    await geocodeEvents();
+
     loadOutreachFromLocalStorage();
-    document.getElementById('lastUpdated').textContent = `Updated: ${new Date(data.last_updated).toLocaleDateString()}`;
+    document.getElementById('lastUpdated').textContent = `Updated: ${new Date().toLocaleDateString()}`;
     applyFilters();
     initCalendar();
     initMap();
@@ -58,6 +181,42 @@ async function loadEvents() {
     updateStats();
   } catch (err) {
     console.error('Failed to load events:', err);
+  }
+}
+
+// Simple geocoding from city/state
+const CITY_COORDS = {
+  'los angeles,ca': [34.0522, -118.2437], 'west hollywood,ca': [34.0900, -118.3617],
+  'san francisco,ca': [37.7749, -122.4194], 'oakland,ca': [37.8044, -122.2712],
+  'san diego,ca': [32.7157, -117.1611], 'monterey,ca': [36.6002, -121.8947],
+  'long beach,ca': [33.7701, -118.1937], 'santa rosa,ca': [38.4404, -122.7141],
+  'willits,ca': [39.4096, -123.3558], 'piercy,ca': [39.9663, -123.7944],
+  'topanga,ca': [34.0397, -118.6026], 'san bernardino,ca': [34.1083, -117.2898],
+  'sacramento,ca': [38.5816, -121.4944], 'humboldt county,ca': [40.7440, -123.8695],
+  'denver,co': [39.7392, -104.9903], 'morrison,co': [39.6536, -105.1911],
+  'las vegas,nv': [36.1699, -115.1398], 'phoenix,az': [33.4484, -112.0740],
+  'tempe,az': [33.4255, -111.9400], 'seattle,wa': [47.6062, -122.3321],
+  'redmond,or': [44.2726, -121.1739], 'portland,or': [45.5152, -122.6784],
+  'new york,ny': [40.7128, -74.0060], 'boston,ma': [42.3601, -71.0589],
+  'detroit,mi': [42.3314, -83.0458], 'ann arbor,mi': [42.2808, -83.7430],
+  'chicago,il': [41.8781, -87.6298], 'atlantic city,nj': [39.3643, -74.4229],
+  'washington,dc': [38.9072, -77.0369], 'st. petersburg,fl': [27.7676, -82.6403],
+  'st. louis,mo': [38.6270, -90.1994], 'kansas city,mo': [39.0997, -94.5786],
+  'berlin,de': [52.5200, 13.4050], 'bilbao,es': [43.2630, -2.9350],
+  'dortmund,de': [51.5136, 7.4653], 'bangkok,th': [13.7563, 100.5018],
+  'toronto,on': [43.6532, -79.3832], 'johannesburg,za': [-26.2041, 28.0473],
+  'medellin,co': [6.2476, -75.5658],
+};
+
+async function geocodeEvents() {
+  for (const ev of allEvents) {
+    if (ev.location.lat && ev.location.lng) continue;
+    const key = `${ev.location.city},${ev.location.state}`.toLowerCase();
+    const coords = CITY_COORDS[key];
+    if (coords) {
+      ev.location.lat = coords[0];
+      ev.location.lng = coords[1];
+    }
   }
 }
 

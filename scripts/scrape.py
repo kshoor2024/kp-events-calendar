@@ -1,5 +1,6 @@
-"""Main scraper orchestrator. Runs all source scrapers, filters, enriches, and updates events.json."""
+"""Main scraper orchestrator v2 — multi-source metro sweep per Brandon's spec."""
 
+import csv
 import json
 import os
 import sys
@@ -8,215 +9,261 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent))
 
-from scripts.sources import music_festival_wizard, cannabis_events, trade_shows
-from scripts.filter import filter_events
-from scripts.enrich import enrich_batch
+from sources import music_festival_wizard, eventbrite, weedmaps_leafly, reddit, cannabis_events, trade_shows
+from filter import filter_events
+from enrich import enrich_batch
 
 load_dotenv()
 
 DATA_DIR = Path(__file__).parent.parent / "data"
-EVENTS_FILE = DATA_DIR / "events.json"
+CSV_FILE = DATA_DIR / "events_database.csv"
 SCRAPE_LOG_FILE = DATA_DIR / "scrape_log.json"
 
 DRY_RUN = os.environ.get("DRY_RUN", "0") == "1"
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+SEND_SLACK = os.environ.get("SEND_SLACK", "0") == "1"
+
+CSV_HEADERS = [
+    "Event Name", "Date(s)", "End Date", "City", "State", "Country", "Type",
+    "Consumption On-Site", "Participation Cost", "Accepts Free Product",
+    "Event Size", "Source URL", "Contact Email or IG", "Contact Name",
+    "Date Added", "Status", "Last Touch Date", "Product Sent", "Ship Tracking",
+    "Notes", "Priority", "Tags", "Outreach Draft Location", "Content Received"
+]
+
+# Load skip list
+SKIP_FILE = Path(__file__).parent.parent / "reference" / "skip_list.md"
 
 
-def load_existing_events():
-    """Load existing events from events.json."""
-    if EVENTS_FILE.exists():
-        with open(EVENTS_FILE) as f:
-            data = json.load(f)
-            return data.get("events", [])
-    return []
+def load_existing_csv():
+    """Load existing events from CSV."""
+    if not CSV_FILE.exists():
+        return []
+    with open(CSV_FILE, newline="") as f:
+        return list(csv.DictReader(f))
 
 
-def save_events(events):
-    """Save events to events.json."""
-    data = {
-        "last_updated": datetime.now(timezone.utc).isoformat(),
-        "events": events
-    }
-    with open(EVENTS_FILE, "w") as f:
-        json.dump(data, f, indent=2)
-    print(f"[Scrape] Saved {len(events)} events to {EVENTS_FILE}")
+def save_csv(rows):
+    """Save events to CSV."""
+    with open(CSV_FILE, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_HEADERS)
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f"[Scrape] Saved {len(rows)} events to {CSV_FILE}")
 
 
-def save_scrape_log(log_entry):
-    """Append to scrape log."""
-    log = []
-    if SCRAPE_LOG_FILE.exists():
-        with open(SCRAPE_LOG_FILE) as f:
-            log = json.load(f)
-
-    log.append(log_entry)
-
-    # Keep last 52 entries (1 year of weekly scrapes)
-    log = log[-52:]
-
-    with open(SCRAPE_LOG_FILE, "w") as f:
-        json.dump(log, f, indent=2)
-
-
-def is_duplicate(candidate, existing_events):
-    """Check if a candidate event already exists in our data."""
-    candidate_name = candidate.get("name", "").lower().strip()
-
-    for ev in existing_events:
-        existing_name = ev.get("name", "").lower().strip()
-
-        # Exact name match
-        if candidate_name == existing_name:
+def is_duplicate(candidate_name, existing_rows):
+    """Check if an event name already exists in the database."""
+    name = candidate_name.lower().strip()
+    for row in existing_rows:
+        existing = row.get("Event Name", "").lower().strip()
+        if name == existing or (len(name) > 10 and name in existing) or (len(existing) > 10 and existing in name):
             return True
-
-        # Fuzzy: one contains the other and they share a year
-        if (candidate_name in existing_name or existing_name in candidate_name):
-            if "2026" in candidate_name and "2026" in existing_name:
-                return True
-
     return False
 
 
-def candidate_to_event(candidate):
-    """Convert an enriched candidate into a proper event dict."""
-    enriched = candidate.get("enriched", {})
+def is_past_event(date_str):
+    """Check if a date string is in the past."""
+    try:
+        if not date_str or date_str == "TBD" or "recurring" in date_str.lower():
+            return False
+        event_date = datetime.strptime(date_str[:10], "%Y-%m-%d")
+        return event_date.date() < datetime.now().date()
+    except (ValueError, TypeError):
+        return False
 
-    # Generate ID from name
-    event_id = candidate.get("name", "unknown").lower()
-    event_id = "".join(c if c.isalnum() or c == " " else "" for c in event_id)
-    event_id = event_id.strip().replace(" ", "-")[:50]
+
+def candidate_to_csv_row(candidate):
+    """Convert a filtered/enriched candidate to a CSV row."""
+    enriched = candidate.get("enriched", {})
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    name = candidate.get("name", "")
+    category = candidate.get("ai_category", "end_user")
+    ev_type = "Business" if category == "business" else "End User"
+
+    # Priority based on type and source quality
+    priority = "B"
+    if candidate.get("competitor_active"):
+        priority = "A"
+    elif ev_type == "End User":
+        tags = candidate.get("tags", "")
+        if any(t in tags for t in ["consumption", "lounge", "sesh", "recurring", "dispensary", "budtender"]):
+            priority = "A"
 
     return {
-        "id": event_id,
-        "name": candidate.get("name", ""),
-        "category": candidate.get("ai_category", "end_user"),
-        "start_date": enriched.get("start_date", ""),
-        "end_date": enriched.get("end_date", ""),
-        "location": {
-            "venue": enriched.get("venue", ""),
-            "city": enriched.get("city", ""),
-            "state": enriched.get("state", ""),
-            "country": enriched.get("country", "US"),
-            "lat": enriched.get("lat"),
-            "lng": enriched.get("lng")
-        },
-        "contact": {
-            "email": enriched.get("email", ""),
-            "phone": enriched.get("phone", ""),
-            "website": enriched.get("website", candidate.get("source_url", ""))
-        },
-        "description": enriched.get("description", ""),
-        "source": candidate.get("source", "scrape"),
-        "source_url": candidate.get("source_url", ""),
-        "added_date": datetime.now().strftime("%Y-%m-%d"),
-        "outreach_status": "not_started",
-        "notes": ""
+        "Event Name": name,
+        "Date(s)": enriched.get("start_date", candidate.get("date_text", "")),
+        "End Date": enriched.get("end_date", ""),
+        "City": enriched.get("city", ""),
+        "State": enriched.get("state", ""),
+        "Country": enriched.get("country", "US"),
+        "Type": ev_type,
+        "Consumption On-Site": "Unknown",
+        "Participation Cost": "$0",
+        "Accepts Free Product": "Unknown",
+        "Event Size": "",
+        "Source URL": candidate.get("source_url", ""),
+        "Contact Email or IG": enriched.get("email", ""),
+        "Contact Name": "",
+        "Date Added": today,
+        "Status": "Not contacted",
+        "Last Touch Date": "",
+        "Product Sent": "",
+        "Ship Tracking": "",
+        "Notes": enriched.get("description", candidate.get("description", ""))[:300],
+        "Priority": priority,
+        "Tags": candidate.get("tags", candidate.get("source", "")),
+        "Outreach Draft Location": "",
+        "Content Received": "",
     }
 
 
 def run():
     """Main scrape pipeline."""
     print("=" * 60)
-    print(f"[Scrape] Starting event scrape at {datetime.now().isoformat()}")
-    print(f"[Scrape] Dry run: {DRY_RUN}")
+    print(f"[Scrape v2] Starting metro sweep at {datetime.now().isoformat()}")
+    print(f"[Scrape v2] Dry run: {DRY_RUN}")
     print("=" * 60)
 
-    # 1. Load existing events
-    existing = load_existing_events()
-    print(f"[Scrape] Existing events: {len(existing)}")
+    existing = load_existing_csv()
+    print(f"[Scrape v2] Existing events: {len(existing)}")
 
-    # 2. Scrape all sources
+    # --- Source sweeps ---
     print("\n--- Scraping Sources ---")
     all_candidates = []
 
-    mfw_candidates = music_festival_wizard.scrape()
-    all_candidates.extend(mfw_candidates)
+    # 1. Eventbrite metro sweep (primary source)
+    try:
+        eb = eventbrite.scrape(tiers=[1, 2])
+        all_candidates.extend(eb)
+    except Exception as e:
+        print(f"[Scrape v2] Eventbrite error: {e}")
 
-    cannabis_candidates = cannabis_events.scrape()
-    all_candidates.extend(cannabis_candidates)
+    # 2. Music Festival Wizard (reggae, hip-hop, cannabis genres)
+    try:
+        mfw = music_festival_wizard.scrape()
+        all_candidates.extend(mfw)
+    except Exception as e:
+        print(f"[Scrape v2] MFW error: {e}")
 
-    trade_candidates = trade_shows.scrape()
-    all_candidates.extend(trade_candidates)
+    # 3. Weedmaps + Leafly
+    try:
+        wl = weedmaps_leafly.scrape()
+        all_candidates.extend(wl)
+    except Exception as e:
+        print(f"[Scrape v2] Weedmaps/Leafly error: {e}")
 
-    print(f"\n[Scrape] Total raw candidates: {len(all_candidates)}")
+    # 4. Reddit cannabis subs
+    try:
+        rd = reddit.scrape()
+        all_candidates.extend(rd)
+    except Exception as e:
+        print(f"[Scrape v2] Reddit error: {e}")
 
-    # 3. Deduplicate against existing
-    new_candidates = [c for c in all_candidates if not is_duplicate(c, existing)]
-    print(f"[Scrape] New candidates (after dedup): {len(new_candidates)}")
+    # 5. Cannabis event aggregators
+    try:
+        ce = cannabis_events.scrape()
+        all_candidates.extend(ce)
+    except Exception as e:
+        print(f"[Scrape v2] Cannabis events error: {e}")
+
+    print(f"\n[Scrape v2] Total raw candidates: {len(all_candidates)}")
+
+    # --- Dedup against existing ---
+    new_candidates = [c for c in all_candidates if not is_duplicate(c.get("name", ""), existing)]
+    print(f"[Scrape v2] New candidates (after dedup): {len(new_candidates)}")
+
+    # --- Hard date filter: never add past events ---
+    new_candidates = [c for c in new_candidates if not is_past_event(c.get("date_text", ""))]
+    print(f"[Scrape v2] After past-date filter: {len(new_candidates)}")
 
     if not new_candidates:
-        print("[Scrape] No new events found. Done.")
-        save_scrape_log({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "candidates_found": len(all_candidates),
-            "new_candidates": 0,
-            "events_added": 0,
-            "dry_run": DRY_RUN
-        })
+        print("[Scrape v2] No new events found.")
+        _save_log(len(all_candidates), 0, 0, [])
         return []
 
-    # 4. Filter with Claude
+    # --- Filter with Claude ---
     if ANTHROPIC_API_KEY:
         print("\n--- Filtering with Claude ---")
-        # Fetch details for MFW candidates before filtering
         for c in new_candidates:
             if c.get("source") == "scrape_mfw" and c.get("source_url"):
                 details = music_festival_wizard.get_event_details(c["source_url"])
                 c.update(details)
 
         relevant = filter_events(new_candidates, ANTHROPIC_API_KEY)
-        print(f"[Scrape] Relevant events after filtering: {len(relevant)}")
+        print(f"[Scrape v2] Relevant after filtering: {len(relevant)}")
 
-        # 5. Enrich with contact info
-        print("\n--- Enriching Events ---")
+        print("\n--- Enriching ---")
         enriched = enrich_batch(relevant, ANTHROPIC_API_KEY)
     else:
-        print("[Scrape] No ANTHROPIC_API_KEY set, skipping filter + enrich")
+        print("[Scrape v2] No ANTHROPIC_API_KEY, skipping filter + enrich")
         enriched = new_candidates
 
-    # 6. Convert to event format and merge
-    new_events = [candidate_to_event(c) for c in enriched]
+    # --- Convert to CSV rows ---
+    new_rows = [candidate_to_csv_row(c) for c in enriched]
 
-    # Filter out events with no valid date
-    new_events = [e for e in new_events if e.get("start_date")]
+    # Filter out rows with no valid future date
+    new_rows = [r for r in new_rows if r.get("Event Name")]
 
-    print(f"\n[Scrape] New events to add: {len(new_events)}")
-    for ev in new_events:
-        print(f"  + {ev['name']} ({ev['start_date']}) [{ev['category']}]")
+    print(f"\n[Scrape v2] New events to add: {len(new_rows)}")
+    for r in new_rows:
+        print(f"  + {r['Event Name']} ({r['Date(s)']}) [{r['Type']}] P:{r['Priority']}")
 
-    if not DRY_RUN and new_events:
-        all_events = existing + new_events
-        # Sort by start_date
-        all_events.sort(key=lambda e: e.get("start_date", "9999"))
-        save_events(all_events)
+    # --- Merge and save ---
+    if not DRY_RUN and new_rows:
+        all_rows = existing + new_rows
 
-    # 7. Log
-    save_scrape_log({
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "candidates_found": len(all_candidates),
-        "new_candidates": len(new_candidates),
-        "relevant_after_filter": len(enriched),
-        "events_added": len(new_events),
-        "new_event_names": [e["name"] for e in new_events],
-        "dry_run": DRY_RUN
-    })
+        # Sort: active End User first, then Business, then archived
+        def sort_key(r):
+            is_archived = "ARCHIVED" in r.get("Status", "")
+            is_skip = "Do Not" in r.get("Status", "")
+            date = r.get("Date(s)", "9999")
+            if is_archived:
+                return (2, date)
+            if is_skip:
+                return (1, date)
+            return (0, date)
 
-    # 8. Send Slack digest (only on Wednesdays or if forced)
-    send_slack = os.environ.get("SEND_SLACK", "0") == "1"
-    if not DRY_RUN and send_slack:
+        all_rows.sort(key=sort_key)
+        save_csv(all_rows)
+
+    # --- Log ---
+    _save_log(len(all_candidates), len(new_candidates), len(new_rows),
+              [r["Event Name"] for r in new_rows])
+
+    # --- Slack digest (Wednesday only) ---
+    if not DRY_RUN and SEND_SLACK:
         try:
-            from scripts.slack_digest import send_weekly_digest
-            send_weekly_digest(existing + new_events, new_events)
+            from slack_digest import send_weekly_digest
+            send_weekly_digest(existing + new_rows, new_rows)
         except Exception as e:
-            print(f"[Scrape] Slack digest error: {e}")
-    elif not send_slack:
-        print("[Scrape] Not Wednesday — skipping Slack digest")
+            print(f"[Scrape v2] Slack digest error: {e}")
+    elif not SEND_SLACK:
+        print("[Scrape v2] Slack digest skipped (not Wednesday or not forced)")
 
-    print(f"\n[Scrape] Done. Added {len(new_events)} new events.")
-    return new_events
+    print(f"\n[Scrape v2] Done. Added {len(new_rows)} new events.")
+    return new_rows
+
+
+def _save_log(candidates, new_candidates, added, names):
+    log = []
+    if SCRAPE_LOG_FILE.exists():
+        with open(SCRAPE_LOG_FILE) as f:
+            log = json.load(f)
+    log.append({
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "candidates_found": candidates,
+        "new_candidates": new_candidates,
+        "events_added": added,
+        "new_event_names": names,
+        "dry_run": DRY_RUN,
+    })
+    log = log[-52:]
+    with open(SCRAPE_LOG_FILE, "w") as f:
+        json.dump(log, f, indent=2)
 
 
 if __name__ == "__main__":
