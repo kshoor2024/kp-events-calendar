@@ -149,8 +149,8 @@ async function loadEvents() {
     loadOutreachFromLocalStorage();
     document.getElementById('lastUpdated').textContent = `Updated: ${new Date().toLocaleDateString()}`;
     applyFilters();
-    initCalendar();
-    initMap();
+    try { initCalendar(); } catch (err) { console.error('Calendar init error:', err); }
+    try { initMap(); } catch (err) { console.error('Map init error:', err); }
     refreshList();
     updateStats();
   } catch (err) {
@@ -280,11 +280,15 @@ function initCalendar() {
 }
 
 function buildCalendarEvents() {
-  return filteredEvents.map(ev => {
+  return filteredEvents.filter(ev => {
+    const d = new Date(ev.start_date);
+    return ev.start_date && !isNaN(d.getTime());
+  }).map(ev => {
     const urg = getUrgency(ev.start_date);
     // FullCalendar end is exclusive, so add a day
     let endDate = ev.end_date || ev.start_date;
     const end = new Date(endDate + 'T00:00:00');
+    if (isNaN(end.getTime())) return null;
     end.setDate(end.getDate() + 1);
 
     return {
@@ -296,7 +300,7 @@ function buildCalendarEvents() {
       textColor: urg.level === 'soon' ? '#1e293b' : '#ffffff',
       extendedProps: { eventData: ev }
     };
-  });
+  }).filter(Boolean);
 }
 
 function refreshCalendar() {
