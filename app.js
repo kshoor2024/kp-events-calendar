@@ -426,6 +426,8 @@ function refreshMap() {
     if (!ev.location?.lat || !ev.location?.lng) return;
 
     const urg = getUrgency(ev.start_date);
+    // Skip past events on map view
+    if (urg.level === 'past') return;
     const catColor = getCategoryColor(ev.category);
     const radius = ev.category === 'business' ? 10 : 7;
 
