@@ -385,7 +385,7 @@ async function loadStateGeoJSON() {
       },
       onEachFeature: (feature, layer) => {
         const name = feature.properties.NAME || feature.properties.name;
-        const status = STATE_CANNABIS_STATUS[abbr] || 'none';
+        const status = STATE_CANNABIS_STATUS[name] || 'none';
         const statusLabel = status === 'rec' ? 'Recreational Legal' : status === 'med' ? 'Medical Only' : 'Not Legal';
         layer.bindTooltip(`<strong>${name}</strong><br>${statusLabel}`, {
           sticky: true,
