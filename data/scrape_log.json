@@ -44,5 +44,18 @@
     "events_added": 0,
     "new_event_names": [],
     "dry_run": false
+  },
+  {
+    "timestamp": "2026-05-08T17:00:46.416165+00:00",
+    "candidates_found": 15,
+    "new_candidates": 15,
+    "events_added": 4,
+    "new_event_names": [
+      "Electronic",
+      "Barcelona",
+      "California",
+      "Megan Thee Stallion"
+    ],
+    "dry_run": false
   }
 ]
