@@ -57,5 +57,23 @@
       "Megan Thee Stallion"
     ],
     "dry_run": false
+  },
+  {
+    "timestamp": "2026-05-15T17:22:48.019703+00:00",
+    "candidates_found": 179,
+    "new_candidates": 175,
+    "events_added": 9,
+    "new_event_names": [
+      "6.Cannabi",
+      "8.Rave events",
+      "10.Dj events",
+      "9.Rave party",
+      "9.Cannabi",
+      "12.Rave party",
+      "2.Rave party",
+      "9.Edm rave",
+      "11.Canna"
+    ],
+    "dry_run": false
   }
 ]
