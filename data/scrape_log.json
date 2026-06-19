@@ -115,5 +115,13 @@
     "events_added": 0,
     "new_event_names": [],
     "dry_run": false
+  },
+  {
+    "timestamp": "2026-06-19T17:46:18.174852+00:00",
+    "candidates_found": 15,
+    "new_candidates": 11,
+    "events_added": 0,
+    "new_event_names": [],
+    "dry_run": false
   }
 ]
