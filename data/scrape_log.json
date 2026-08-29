@@ -195,5 +195,13 @@
     "events_added": 0,
     "new_event_names": [],
     "dry_run": false
+  },
+  {
+    "timestamp": "2026-08-29T00:12:36.539204+00:00",
+    "candidates_found": 15,
+    "new_candidates": 11,
+    "events_added": 0,
+    "new_event_names": [],
+    "dry_run": false
   }
 ]
